@@ -4,7 +4,6 @@ package DAO;
 import Model.objPaciente;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 

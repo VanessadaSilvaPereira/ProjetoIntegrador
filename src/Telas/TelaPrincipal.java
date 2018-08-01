@@ -36,6 +36,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuListasPacientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         menuAgendamentoConsultas = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
@@ -96,6 +97,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu2.add(menuAgendamentoConsultas);
 
+        jMenuItem1.setText("Lista de Consultas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem1);
+
         jMenuBar1.add(jMenu2);
 
         setJMenuBar(jMenuBar1);
@@ -127,6 +136,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jdpTelaInicial.add(frm);
         frm.setVisible(true);
     }//GEN-LAST:event_menuAgendamentoConsultasActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+         ListConsultas list = new ListConsultas();
+        jdpTelaInicial.add(list);
+        list.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,6 +182,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JDesktopPane jdpTelaInicial;
     private javax.swing.JMenuItem menuAgendamentoConsultas;
     private javax.swing.JMenu menuCadastros;

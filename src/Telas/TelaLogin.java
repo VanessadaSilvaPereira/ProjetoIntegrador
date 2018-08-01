@@ -49,19 +49,19 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(btnSair);
         btnSair.setBounds(290, 230, 51, 23);
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(150, 60, 180, 20);
+        txtUsuario.setBounds(150, 60, 180, 30);
         getContentPane().add(passwordSenha);
-        passwordSenha.setBounds(150, 90, 180, 20);
+        passwordSenha.setBounds(150, 110, 180, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Usuário:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(80, 60, 60, 16);
+        jLabel1.setBounds(60, 70, 60, 16);
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblSenha.setText("Senha:");
         getContentPane().add(lblSenha);
-        lblSenha.setBounds(80, 90, 70, 16);
+        lblSenha.setBounds(70, 120, 70, 16);
 
         btnAcessar.setText("Acessar");
         btnAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +70,7 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(40, 230, 71, 23);
+        btnAcessar.setBounds(40, 230, 100, 23);
 
         labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundotelaLogin.png"))); // NOI18N
         labelFundoLogin.setText("teste");

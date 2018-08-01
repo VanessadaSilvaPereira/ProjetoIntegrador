@@ -47,11 +47,11 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(290, 230, 55, 25);
+        btnSair.setBounds(290, 230, 51, 23);
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(150, 60, 180, 22);
+        txtUsuario.setBounds(150, 60, 180, 20);
         getContentPane().add(passwordSenha);
-        passwordSenha.setBounds(150, 90, 180, 22);
+        passwordSenha.setBounds(150, 90, 180, 20);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Usuário:");
@@ -70,11 +70,12 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(40, 230, 77, 25);
+        btnAcessar.setBounds(40, 230, 71, 23);
 
         labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundotelaLogin.png"))); // NOI18N
+        labelFundoLogin.setText("teste");
         getContentPane().add(labelFundoLogin);
-        labelFundoLogin.setBounds(0, 0, 400, 297);
+        labelFundoLogin.setBounds(0, 0, 400, 310);
 
         setSize(new java.awt.Dimension(418, 347));
         setLocationRelativeTo(null);

@@ -10,6 +10,11 @@ import javax.swing.JOptionPane;
 
 public class pacienteDAO {
     public static void inserir( objPaciente pac){
+        int dia = pac.getNascimento().getDate();
+        int mes =( pac.getNascimento().getMonth()+1);
+        int ano = pac.getNascimento().getYear();
+        String data = ""+ ano + "-"+ mes+ "-"+ dia;
+        
 
         String sql = "INSERT INTO pacientes "
                 + " (codigo, nome , email, telefone, nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, medico, convenio ) VALUES "
@@ -17,7 +22,7 @@ public class pacienteDAO {
                 + " '" + pac.getNome()          + "'," 
                 + " '"   + pac.getEmail()       + "'," 
                 + " '"   + pac.getTelefone()    + "',"
-                + " "    + pac.getNascimento()  + ","
+                + " '"    + data                + "',"
                 + " '"   + pac.getEndereco()    + "',"
                 + " '"   + pac.getBairro()      + "',"
                 + " '"   + pac.getCidade()      + "',"
@@ -25,7 +30,7 @@ public class pacienteDAO {
                 + " '"   + pac.getEstadoCivil() + "',"
                 + " '"   + pac.getCpf()         + "',"
                 + " '"   + pac.getRg()          + "',"
-                + " '"   + pac.getMedico()      + "',"
+                + "  "   + pac.getMedico().getCodigo()      + ","
                 + " '"   + pac.getConvenio()    + "'  );";
         
         Conexao.executar(sql);   

@@ -32,7 +32,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadastros = new javax.swing.JMenu();
         menuCadastrosMedicos = new javax.swing.JMenuItem();
         menuCadastrosPacientes = new javax.swing.JMenuItem();
-        menuCadastrosUsuarios = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuListasPacientes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -72,14 +71,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuCadastros.add(menuCadastrosPacientes);
-
-        menuCadastrosUsuarios.setText("Usuários");
-        menuCadastrosUsuarios.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuCadastrosUsuariosActionPerformed(evt);
-            }
-        });
-        menuCadastros.add(menuCadastrosUsuarios);
 
         jMenuBar1.add(menuCadastros);
 
@@ -124,12 +115,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jdpTelaInicial.add(frm);
         frm.setVisible(true);
     }//GEN-LAST:event_menuCadastrosPacientesActionPerformed
-
-    private void menuCadastrosUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrosUsuariosActionPerformed
-   FrmCadastroUsuarios frm = new FrmCadastroUsuarios();
-        jdpTelaInicial.add(frm);
-        frm.setVisible(true);
-    }//GEN-LAST:event_menuCadastrosUsuariosActionPerformed
 
     private void menuListasPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListasPacientesActionPerformed
      ListPacientes list = new ListPacientes();
@@ -187,7 +172,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu menuCadastros;
     private javax.swing.JMenuItem menuCadastrosMedicos;
     private javax.swing.JMenuItem menuCadastrosPacientes;
-    private javax.swing.JMenuItem menuCadastrosUsuarios;
     private javax.swing.JMenuItem menuListasPacientes;
     // End of variables declaration//GEN-END:variables
 }

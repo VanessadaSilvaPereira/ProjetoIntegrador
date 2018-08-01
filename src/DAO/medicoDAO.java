@@ -26,7 +26,7 @@ public class medicoDAO {
     
 public static void editar( objMedico med){
         String sql = "UPDATE medicos SET "
-                + " nome = '" + med.getNome() + "' " 
+                + " nome = '" + med.getNome() + "' , " 
                 + " especialidade = '" + med.getEspecialidade()+ "' " 
                 + " WHERE codigo = " + med.getCodigo();
         

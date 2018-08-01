@@ -26,41 +26,8 @@ public class FrmCadastroMedico extends javax.swing.JInternalFrame {
     public FrmCadastroMedico() {
         initComponents();
         carregarTabela();
-        novo = true;
-        
-        
-        if(novo){
-            objMedico med = new objMedico();
-           String sql = "INSERT INTO medicos "
-                + " ( nome , especialidade) VALUES "
-                + "  ( "
-                + "  '" + med.getNome()          + "' , " 
-                + "  '" + med.getEspecialidade() + "' );";  
-        Conexao.executar(sql);   
-        
-        
-        }else{
-            
-            objMedico med = new objMedico();
-            {
-        String sql = "UPDATE medicos SET "
-                + " nome = '" + med.getNome() + "' " 
-                + " especialidade = '" + med.getEspecialidade()+ "' " 
-                + " WHERE codigo = " + med.getCodigo();
-        
-        Conexao.executar(sql); 
+        novo = true;    
     }
-            
-
-        JOptionPane.showMessageDialog(null, "Dados alterados com Sucesso");
-            
-        }
-            
-    }
-    
- 
-   
-   
     private void carregarTabela(){
         DefaultTableModel modelo = new DefaultTableModel();
         String[] colunas = { "Código", "Médico" , "Especialidade" };
@@ -264,7 +231,14 @@ if( ! nome.isEmpty()){
         medico.setNome(txtNome.getText());
         medico.setEspecialidade(txtEspecialidade.getText());
         
-        medicoDAO.inserir(medico);
+        if(novo)
+            medicoDAO.inserir(medico);
+        else{
+            medico.setCodigo( Integer.valueOf(lblCodigo.getText()) );
+            medicoDAO.editar(medico);
+            novo = true;
+        }
+        
         txtNome.setText("");
         txtEspecialidade.setText("");
 }
@@ -302,16 +276,14 @@ private void limparCadastro(){
         }else{
              
            
-            String codigo = (String) tableMédicos.getValueAt(linha, 0);
+            String codigo = String.valueOf( (int) tableMédicos.getValueAt(linha, 0) );
             String nome = (String) tableMédicos.getValueAt(linha, 1);
             String especialidade = (String) tableMédicos.getValueAt(linha, 2);
             
             
-            lblCodigo.setText( codigo );
+            lblCodigo.setText(codigo);
             txtNome.setText(nome);
             txtEspecialidade.setText(especialidade);
-            
-            
             
             novo = false;
         }

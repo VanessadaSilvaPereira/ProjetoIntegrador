@@ -21,6 +21,7 @@ public class ListConsultas extends javax.swing.JInternalFrame {
      */
     public ListConsultas() {
         initComponents();
+        carregarTabela();
     }
 private void carregarTabela(){
          DefaultTableModel modelo = new DefaultTableModel();

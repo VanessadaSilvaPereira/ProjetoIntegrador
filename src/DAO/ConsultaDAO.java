@@ -28,7 +28,7 @@ public class ConsultaDAO {
     
     
     String sql = "SELECT * FROM consultas";
-    
+    //inner join
     
         ResultSet rs = Conexao.consultar(sql);
    

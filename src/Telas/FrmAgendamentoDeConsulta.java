@@ -5,7 +5,9 @@
  */
 package Telas;
 
+import DAO.ConsultaDAO;
 import DAO.medicoDAO;
+import Model.objConsulta;
 import Model.objMedico;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -40,9 +42,9 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         cmbHora = new javax.swing.JComboBox<>();
         txtPaciente = new javax.swing.JTextField();
-        txtData = new javax.swing.JTextField();
         btnSalvar = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
+        txtData = new javax.swing.JFormattedTextField();
 
         jButton1.setText("jButton1");
 
@@ -70,6 +72,11 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00" }));
 
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
 
         btnCancelar.setText("Cancelar");
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +102,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(74, 74, 74)
@@ -127,7 +134,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar))
@@ -158,6 +165,10 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         FrmAgendamentoDeConsulta.this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+     
+    }//GEN-LAST:event_btnSalvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
@@ -169,7 +180,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txtData;
+    private javax.swing.JFormattedTextField txtData;
     private javax.swing.JTextField txtPaciente;
     // End of variables declaration//GEN-END:variables
 }

@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 
 public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
@@ -462,7 +463,7 @@ private void limparCadastro(){
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
 carregarMedicos();
-    
+
     }//GEN-LAST:event_cmbMedicoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed

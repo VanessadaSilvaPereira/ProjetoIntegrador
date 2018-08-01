@@ -5,9 +5,7 @@
  */
 package Telas;
 
-import DAO.ConsultaDAO;
 import DAO.medicoDAO;
-import Model.objConsulta;
 import Model.objMedico;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;

@@ -2,6 +2,7 @@
 package DAO;
 
 import Model.objConsulta;
+import Model.objMedico;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +39,10 @@ public class ConsultaDAO {
             while (rs.next()) {           
                                 
                 objConsulta con = new objConsulta();
-               
+                objMedico med = new objMedico();
+                
                 con.setCpfpaciente(rs.getString(1));
-                con.setMedico(medico);
+                con.setMedico(med);
                 con.setDataconsulta(rs.getDate(3));
                 con.setHora(rs.getTime(4));
                 lista.add(con);

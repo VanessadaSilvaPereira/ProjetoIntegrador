@@ -8,6 +8,7 @@ package Telas;
 import DAO.medicoDAO;
 import Model.objConsulta;
 import Model.objMedico;
+import java.util.Date;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 
@@ -151,20 +152,18 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
-   
-        
+
         List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
-         objMedico fake = new objMedico();
+        objMedico fake = new objMedico();
         listaDeMedicos.add(0, fake);
-        
-         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for(objMedico med:listaDeMedicos){
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for (objMedico med : listaDeMedicos) {
             modelo.addElement(med);
         }
         cmbMedico.setModel(modelo);
-    
 
-    
+
     }//GEN-LAST:event_cmbMedicoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -172,21 +171,27 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-      String paciente = txtPaciente.getText();
-      String data = txtData.getText();
 
+        String paciente = txtPaciente.getText();
+        String Dataconsulta = txtData.getText();
 
-if( ! paciente.isEmpty()){
+        if (!paciente.isEmpty()) {
 
-        objConsulta consulta = new objConsulta();
-        consulta.setCodigo(WIDTH);
-        consulta.setCpfpaciente(txtPaciente.getText());
-        consulta.setDataconsulta(txtData.getText());
-      
-        txtNome.setText("");
-        txtEspecialidade.setText("");
-}
+            objConsulta consulta = new objConsulta();
+            consulta.setCodigo(WIDTH);
+            consulta.setCpfpaciente(txtPaciente.getText());
+            String data = txtData.getText();
+            String sdia = data.substring(0, 2);
+            String smes = data.substring(3, 5);
+            String sano = data.substring(6, 10);
+            int dia = Integer.valueOf(sdia);
+            int mes = Integer.valueOf(smes);
+            int ano = Integer.valueOf(sano);
+            Date dataconsulta = new Date(ano, (mes - 1), dia);
+            consulta.setDataconsulta(dataconsulta);
+            txtPaciente.setText("");
+            txtData.setText("");
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

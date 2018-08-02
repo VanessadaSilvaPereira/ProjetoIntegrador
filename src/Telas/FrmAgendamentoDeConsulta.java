@@ -6,6 +6,7 @@
 package Telas;
 
 import DAO.medicoDAO;
+import Model.objConsulta;
 import Model.objMedico;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
@@ -82,6 +83,13 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
+
+        try {
+            txtData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        txtData.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,7 +172,21 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-     
+        
+      String paciente = txtPaciente.getText();
+      String data = txtData.getText();
+
+
+if( ! paciente.isEmpty()){
+
+        objConsulta consulta = new objConsulta();
+        consulta.setCodigo(WIDTH);
+        consulta.setCpfpaciente(txtPaciente.getText());
+        consulta.setDataconsulta(txtData.getText());
+      
+        txtNome.setText("");
+        txtEspecialidade.setText("");
+}
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

@@ -16,7 +16,7 @@ public class pacienteDAO {
         
 
         String sql = "INSERT INTO pacientes "
-                + " (codigo, nome , email, telefone, nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, medico, convenio ) VALUES "
+                + " (codigo, nome , email, telefone, nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, codMedico, convenio ) VALUES "
                 + " ( " + pac.getCodigo()       + "," 
                 + " '" + pac.getNome()          + "'," 
                 + " '"   + pac.getEmail()       + "'," 
@@ -48,7 +48,7 @@ public static void editar( objPaciente pac){
                 + " estadoCivil = '" + pac.getEstadoCivil()+ "' " 
                 + " cpf = '" + pac.getCpf()+ "' " 
                 + " rg = '" + pac.getRg()+ "' " 
-                + " medico = '" + pac.getMedico()+ "' " 
+                + " codMedico = '" + pac.getMedico()+ " " 
                 + 
                 " WHERE codigo = " + pac.getCodigo();
         

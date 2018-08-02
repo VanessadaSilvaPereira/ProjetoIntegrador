@@ -5,16 +5,11 @@ import DAO.medicoDAO;
 import DAO.pacienteDAO;
 import Model.objMedico;
 import Model.objPaciente;
-import java.awt.TextField;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 
 
 public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
@@ -438,7 +433,7 @@ private void limparCadastro(){
                 
                 paciente.setConvenio(convenio);
                 paciente.setEstadoCivil( cmbEstadoCivil.getSelectedItem().toString());
-                paciente.setMedico( (objMedico) cmbMedico.getSelectedItem() );
+                paciente.setMedico((objMedico) cmbMedico.getSelectedItem());
                 
                 String data = txtNascimento.getText();
                 String sdia = data.substring(0, 2);

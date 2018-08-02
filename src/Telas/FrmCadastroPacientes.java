@@ -22,6 +22,7 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
     
     public FrmCadastroPacientes() {
         initComponents();
+        carregarMedicos();
     }
 
     
@@ -89,7 +90,6 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
         txtCidade.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
         cmbMedico.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        cmbMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbMedicoActionPerformed(evt);
@@ -383,7 +383,7 @@ private void limparCadastro(){
      public void carregarMedicos(){
         
         List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
-         objMedico fake = new objMedico();
+         objMedico fake = new objMedico(0, "Selecione...", "");
         listaDeMedicos.add(0, fake);
         
          DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -462,7 +462,7 @@ private void limparCadastro(){
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
-carregarMedicos();
+
 
     }//GEN-LAST:event_cmbMedicoActionPerformed
 

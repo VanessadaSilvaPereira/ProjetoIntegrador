@@ -3,9 +3,9 @@ package Model;
 
 
 public class objMedico {
-    private int codigo;
-    private String nome;
-    private String especialidade;
+   int codigo;
+    String nome;
+    String especialidade;
 
     public objMedico(int codigo, String nome, String especialidade) {
         this.codigo = codigo;
@@ -39,6 +39,11 @@ public class objMedico {
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
+    }
+
+    @Override
+    public String toString() {
+        return nome; //To change body of generated methods, choose Tools | Templates.
     }
 
   

@@ -21,6 +21,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
      */
     public FrmAgendamentoDeConsulta() {
         initComponents();
+        carregarMedicos();
     }
 
     /**
@@ -56,7 +57,6 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Médico:");
 
-        cmbMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbMedicoActionPerformed(evt);
@@ -144,9 +144,17 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
    
-        
-        List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
-         objMedico fake = new objMedico();
+      
+      
+    
+
+    
+    }//GEN-LAST:event_cmbMedicoActionPerformed
+  
+    public  void carregarMedicos(){
+    
+    List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
+         objMedico fake = new objMedico(0, "Selecione...", "");
         listaDeMedicos.add(0, fake);
         
          DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -154,11 +162,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
             modelo.addElement(med);
         }
         cmbMedico.setModel(modelo);
-    
-
-    
-    }//GEN-LAST:event_cmbMedicoActionPerformed
-
+    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         FrmAgendamentoDeConsulta.this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed

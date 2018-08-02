@@ -3,9 +3,9 @@ package Model;
 
 
 public class objMedico {
-    private int codigo;
-    private String nome;
-    private String especialidade;
+     int codigo;
+     String nome;
+     String especialidade;
 
     public objMedico(int codigo, String nome, String especialidade) {
         this.codigo = codigo;

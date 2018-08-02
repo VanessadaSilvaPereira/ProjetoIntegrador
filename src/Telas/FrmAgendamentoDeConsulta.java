@@ -175,6 +175,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         
       String paciente = txtPaciente.getText();
       String data = txtData.getText();
+      
 
 
 if( ! paciente.isEmpty()){

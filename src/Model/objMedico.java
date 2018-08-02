@@ -41,6 +41,11 @@ public class objMedico {
         this.especialidade = especialidade;
     }
 
+    @Override
+    public String toString() {
+        return nome; //To change body of generated methods, choose Tools | Templates.
+    }
+
   
     
 }

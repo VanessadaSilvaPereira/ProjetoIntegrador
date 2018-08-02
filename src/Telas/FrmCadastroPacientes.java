@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 
 
 public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
@@ -28,7 +29,6 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtNascimento = new javax.swing.JTextField();
         txtTelefone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         txtConvenio = new javax.swing.JTextField();
@@ -63,6 +63,7 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
         lblCodigo = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
+        txtNascimento = new javax.swing.JFormattedTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -71,13 +72,6 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
         setTitle("Cadastro de Pacientes");
         setMaximumSize(new java.awt.Dimension(21474836, 21474836));
         setPreferredSize(new java.awt.Dimension(700, 500));
-
-        txtNascimento.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        txtNascimento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNascimentoActionPerformed(evt);
-            }
-        });
 
         txtTelefone.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
 
@@ -194,6 +188,12 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
             }
         });
 
+        try {
+            txtNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -231,20 +231,19 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtTelefone))
-                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(2, 2, 2)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                                 .addComponent(jLabel7)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(cmbEstadoCivil, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addComponent(jLabel3)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                                .addComponent(cmbEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNascimento)
+                                            .addComponent(txtTelefone))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
@@ -325,9 +324,9 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10)
-                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRG, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
@@ -360,10 +359,6 @@ public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNascimentoActionPerformed
-        
-    }//GEN-LAST:event_txtNascimentoActionPerformed
 private void limparCadastro(){
      txtNome.setText("");
         txtBairro.setText("");
@@ -410,39 +405,50 @@ private void limparCadastro(){
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         try {
-            DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            // int codigo = txtCodigo.getint
+      
+         
             String nome = txtNome.getText();
             String email = txtEmail.getText();
             String telefone = txtTelefone.getText();
-            //Date nascimento = dateFormat.parse(TextField.getText());
             String endereco = txtEndereco.getText();
             String bairro = txtBairro.getText();
             String cidade = txtCidade.getText();
             String cep = txtCEP.getText();
-            //estadoCivil
             String cpf = txtCPF.getText();
             String rg = txtRG.getText();
             String convenio = txtConvenio.getText();
-            //medico
+            
        
+            
+            
             
             if( ! nome.isEmpty()){
                 
                 objPaciente paciente = new objPaciente();
-                paciente.setCodigo(WIDTH);
+                
                 paciente.setNome(nome);
                 paciente.setEmail(email);
                 paciente.setTelefone(telefone);
-                //paciente.setNascimento(nascimento);
                 paciente.setEndereco(endereco);
                 paciente.setBairro(bairro);
                 paciente.setCidade(cidade);
                 paciente.setCep(cep);
                 paciente.setCpf(cpf);
+                paciente.setRg(rg);
+                
                 paciente.setConvenio(convenio);
                 paciente.setEstadoCivil( cmbEstadoCivil.getSelectedItem().toString());
-                paciente.setMedico(WIDTH);
+                paciente.setMedico( (objMedico) cmbMedico.getSelectedItem() );
+                
+                String data = txtNascimento.getText();
+                String sdia = data.substring(0, 2);
+                String smes = data.substring(3, 5);
+                String sano = data.substring(6, 10);
+                int dia = Integer.valueOf(sdia);
+                int mes = Integer.valueOf(smes);
+                int ano = Integer.valueOf(sano);
+                Date nasc = new Date(ano, (mes -1), dia);
+                paciente.setNascimento(nasc);
                 
                 
                 pacienteDAO.inserir(paciente);
@@ -457,7 +463,7 @@ private void limparCadastro(){
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
 carregarMedicos();
-    
+
     }//GEN-LAST:event_cmbMedicoActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -497,7 +503,7 @@ carregarMedicos();
     private javax.swing.JTextField txtConvenio;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
-    private javax.swing.JTextField txtNascimento;
+    private javax.swing.JFormattedTextField txtNascimento;
     private javax.swing.JTextField txtNome;
     private javax.swing.JTextField txtRG;
     private javax.swing.JTextField txtTelefone;

@@ -17,7 +17,7 @@ public class objPaciente {
     private String estadoCivil;
     private String cpf;
     private String rg;
-    private int medico;
+    private objMedico medico;
     private String convenio;
 
     public objPaciente() {
@@ -25,7 +25,7 @@ public class objPaciente {
     
     
 
-    public objPaciente(int codigo, String nome, String email, Date nascimento, String telefone, String endereco, String bairro, String cidade, String cep, String estadoCivil, String cpf, String rg, int médico, String convenio) {
+    public objPaciente(int codigo, String nome, String email, Date nascimento, String telefone, String endereco, String bairro, String cidade, String cep, String estadoCivil, String cpf, String rg, objMedico médico, String convenio) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
@@ -140,11 +140,11 @@ public class objPaciente {
         this.rg = rg;
     }
 
-    public int getMedico() {
+    public objMedico getMedico() {
         return medico;
     }
 
-    public void setMedico(int médico) {
+    public void setMedico(objMedico médico) {
         this.medico = médico;
     }
 

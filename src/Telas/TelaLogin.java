@@ -47,21 +47,21 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(290, 230, 55, 25);
+        btnSair.setBounds(290, 230, 51, 23);
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(150, 60, 180, 22);
+        txtUsuario.setBounds(150, 60, 180, 30);
         getContentPane().add(passwordSenha);
-        passwordSenha.setBounds(150, 90, 180, 22);
+        passwordSenha.setBounds(150, 110, 180, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel1.setText("Usuário:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(80, 60, 60, 16);
+        jLabel1.setBounds(60, 70, 60, 16);
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         lblSenha.setText("Senha:");
         getContentPane().add(lblSenha);
-        lblSenha.setBounds(80, 90, 70, 16);
+        lblSenha.setBounds(70, 120, 70, 16);
 
         btnAcessar.setText("Acessar");
         btnAcessar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,24 +70,25 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(40, 230, 77, 25);
+        btnAcessar.setBounds(40, 230, 100, 23);
 
         labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundotelaLogin.png"))); // NOI18N
+        labelFundoLogin.setText("teste");
         getContentPane().add(labelFundoLogin);
-        labelFundoLogin.setBounds(0, 0, 400, 297);
+        labelFundoLogin.setBounds(0, 0, 400, 310);
 
         setSize(new java.awt.Dimension(418, 347));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcessarActionPerformed
-      if(txtUsuario.getText().equals("admin")&& passwordSenha.getText().equals("123456")){
+      //if(txtUsuario.getText().equals("admin")&& passwordSenha.getText().equals("123456")){
        TelaPrincipal tela = new TelaPrincipal();
        tela.setVisible(true);
        dispose();
-      }else{
-          JOptionPane.showMessageDialog(rootPane, "Senha ou usuário inválidos");
-      }
+      //}else{
+         // JOptionPane.showMessageDialog(rootPane, "Senha ou usuário inválidos");
+      //}
         
         
        

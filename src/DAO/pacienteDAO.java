@@ -4,6 +4,7 @@ package DAO;
 import Model.objPaciente;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -82,8 +83,17 @@ public static List<objPaciente> getPacientes(){
             while (rs.next()) {           
                                 
                 objPaciente pac = new objPaciente();
+                
                 pac.setNome(rs.getString(1));
+                pac.setEmail(rs.getString(2));
+                pac.setTelefone(rs.getString(3));
+                
+                pac.setNascimento(nascimento);
+                pac.setEndereco(rs.getString(5));
+                pac.setBairro(rs.getString(6));
+                
                 pac.setCpf(rs.getString(2));
+                pac.set
                 lista.add(pac);
             }
         } catch (Exception e) {
@@ -94,6 +104,6 @@ public static List<objPaciente> getPacientes(){
     return lista;
     
 }
-
+//nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, codMedico, convenio ) VALUES "
 }
 

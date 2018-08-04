@@ -13,6 +13,7 @@ public class ListPacientes extends javax.swing.JInternalFrame {
     public ListPacientes() {
         initComponents();
         carregarTabela();
+        
     }
     
      private void carregarTabela(){
@@ -24,11 +25,14 @@ public class ListPacientes extends javax.swing.JInternalFrame {
          List<objPaciente> lista = pacienteDAO.getPacientes();
         
         for(objPaciente pac : lista){
-            Object[] obj = { pac.getCpf(), pac.getNome() };
-            modelo.addRow(obj);
-            
+            Object[] obj = { pac.getCodigo(), pac.getNome(), pac.getEmail(), pac.getTelefone(),
+            pac.getNascimento(), pac.getEndereco(), pac.getBairro(), pac.getCidade(), pac.getCep(),
+            pac.getEstadoCivil(), pac.getCpf(), pac.getRg(), pac.getConvenio(), pac.getMedico().getNome()};
+            modelo.addRow(obj);    
         }
+        
         tablePacientes.setModel(modelo);
+        
     }
 
     /**

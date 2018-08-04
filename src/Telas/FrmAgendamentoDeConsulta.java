@@ -10,6 +10,8 @@ import Model.objConsulta;
 import Model.objMedico;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -69,7 +71,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Hora:");
 
-        cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00" }));
+        cmbHora.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione...", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00" }));
 
         btnSalvar.setText("Salvar");
         btnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -160,7 +162,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     
     }//GEN-LAST:event_cmbMedicoActionPerformed
   
-    public  void carregarMedicos(){
+    private void carregarMedicos(){
     
     List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
          objMedico fake = new objMedico(0, "Selecione...", "");
@@ -175,19 +177,25 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         FrmAgendamentoDeConsulta.this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+private void limparCadastro(){
+     txtPaciente.setText("");
+     txtData.setText("");
+     cmbMedico.setSelectedIndex(0);
+     cmbHora.setSelectedIndex(0);
+     
+     
+}
+        
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
    
-      
-
+        try {
         String paciente = txtPaciente.getText();
-        String Dataconsulta = txtData.getText();
-
-        if (!paciente.isEmpty()) {
+        //String Dataconsulta = txtData.getText(); 
+         if (!paciente.isEmpty()) {
 
             objConsulta consulta = new objConsulta();
-            consulta.setCodigo(WIDTH);
+            
             consulta.setCpfpaciente(txtPaciente.getText());
             String data = txtData.getText();
             String sdia = data.substring(0, 2);
@@ -198,9 +206,18 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
             int ano = Integer.valueOf(sano);
             Date dataconsulta = new Date(ano, (mes - 1), dia);
             consulta.setDataconsulta(dataconsulta);
-            txtPaciente.setText("");
-            txtData.setText("");
+            
+           limparCadastro();
         }
+        } catch (Exception ex) {
+           
+            Logger.getLogger(FrmAgendamentoDeConsulta.class.getName()).log(Level.SEVERE, null,ex);
+            
+        }
+
+      
+
+       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

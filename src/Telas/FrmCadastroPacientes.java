@@ -367,7 +367,8 @@ private void limparCadastro(){
         txtRG.setText("");
         txtTelefone.setText("");
         cmbEstadoCivil.setSelectedItem("Selecione...");
-        cmbMedico.setSelectedItem("Selecione...");
+        cmbMedico.setSelectedIndex(0);
+        
 }
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
        limparCadastro();
@@ -405,12 +406,15 @@ private void limparCadastro(){
             String nome = txtNome.getText();
             String email = txtEmail.getText();
             String telefone = txtTelefone.getText();
+            String cpf = txtCPF.getText();
+           
+            String rg = txtRG.getText();
+          
+            String cidade = txtCidade.getText();
             String endereco = txtEndereco.getText();
             String bairro = txtBairro.getText();
-            String cidade = txtCidade.getText();
+          
             String cep = txtCEP.getText();
-            String cpf = txtCPF.getText();
-            String rg = txtRG.getText();
             String convenio = txtConvenio.getText();
             
        
@@ -446,9 +450,8 @@ private void limparCadastro(){
                 paciente.setNascimento(nasc);
                 
                 
-                pacienteDAO.inserir(paciente);
-                txtNome.setText("");
-                txtEmail.setText("");
+               pacienteDAO.inserir(paciente);
+              limparCadastro();
                 
             }     
         } catch (Exception ex) {

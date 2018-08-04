@@ -1,6 +1,7 @@
 
 package DAO;
 
+import Model.objMedico;
 import Model.objPaciente;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -81,19 +82,25 @@ public static List<objPaciente> getPacientes(){
     if (rs != null){
         try {
             while (rs.next()) {           
-                                
+                       
+                
+                objMedico med = new objMedico();
+                
                 objPaciente pac = new objPaciente();
-                
-                pac.setNome(rs.getString(1));
-                pac.setEmail(rs.getString(2));
-                pac.setTelefone(rs.getString(3));
-                
-                pac.setNascimento(nascimento);
-                pac.setEndereco(rs.getString(5));
-                pac.setBairro(rs.getString(6));
-                
-                pac.setCpf(rs.getString(2));
-                pac.set
+                pac.setCodigo(rs.getInt(1));
+                pac.setNome(rs.getString(2));
+                pac.setEmail(rs.getString(3));
+                pac.setTelefone(rs.getString(4));
+                pac.setCpf(rs.getString(11));
+                pac.setNascimento(rs.getDate(5));
+                pac.setRg(rs.getString(12));
+                pac.setEstadoCivil(rs.getString(10));
+                pac.setCidade(rs.getString(8));
+                pac.setEndereco(rs.getString(6));
+                pac.setBairro(rs.getString(7));
+                pac.setMedico(med);
+                pac.setCep(rs.getString(9));
+                pac.setConvenio(rs.getString(13));
                 lista.add(pac);
             }
         } catch (Exception e) {
@@ -104,6 +111,6 @@ public static List<objPaciente> getPacientes(){
     return lista;
     
 }
-//nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, codMedico, convenio ) VALUES "
+
 }
 

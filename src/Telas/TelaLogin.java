@@ -47,18 +47,20 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnSair);
-        btnSair.setBounds(290, 230, 51, 23);
+        btnSair.setBounds(290, 230, 55, 25);
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(150, 60, 180, 30);
+        txtUsuario.setBounds(150, 60, 280, 30);
         getContentPane().add(passwordSenha);
-        passwordSenha.setBounds(150, 110, 180, 30);
+        passwordSenha.setBounds(150, 110, 280, 30);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Usuário:");
         getContentPane().add(jLabel1);
         jLabel1.setBounds(60, 70, 60, 16);
 
         lblSenha.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(255, 255, 255));
         lblSenha.setText("Senha:");
         getContentPane().add(lblSenha);
         lblSenha.setBounds(70, 120, 70, 16);
@@ -70,14 +72,14 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnAcessar);
-        btnAcessar.setBounds(40, 230, 100, 23);
+        btnAcessar.setBounds(40, 230, 100, 25);
 
-        labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundotelaLogin.png"))); // NOI18N
+        labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Neon-Blue-Abstract-4K-Wallpaper.jpg"))); // NOI18N
         labelFundoLogin.setText("teste");
         getContentPane().add(labelFundoLogin);
-        labelFundoLogin.setBounds(0, 0, 400, 310);
+        labelFundoLogin.setBounds(-300, -10, 820, 310);
 
-        setSize(new java.awt.Dimension(418, 347));
+        setSize(new java.awt.Dimension(528, 347));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

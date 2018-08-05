@@ -28,6 +28,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jdpTelaInicial = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
         menuCadastrosMedicos = new javax.swing.JMenuItem();
@@ -41,19 +42,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
-        javax.swing.GroupLayout jdpTelaInicialLayout = new javax.swing.GroupLayout(jdpTelaInicial);
-        jdpTelaInicial.setLayout(jdpTelaInicialLayout);
-        jdpTelaInicialLayout.setHorizontalGroup(
-            jdpTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
-        );
-        jdpTelaInicialLayout.setVerticalGroup(
-            jdpTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 700, Short.MAX_VALUE)
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Neon-Blue-Abstract-4K-Wallpaper.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jdpTelaInicial.add(jLabel1);
+        jLabel1.setBounds(0, 0, 940, 900);
 
         getContentPane().add(jdpTelaInicial);
-        jdpTelaInicial.setBounds(0, 0, 900, 700);
+        jdpTelaInicial.setBounds(0, 0, 1200, 900);
 
         menuCadastros.setText("Cadastros");
 
@@ -179,6 +174,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

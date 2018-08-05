@@ -3,6 +3,9 @@ package Telas;
 
 import DAO.pacienteDAO;
 import Model.objPaciente;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,13 +27,21 @@ public class ListPacientes extends javax.swing.JInternalFrame {
         
         modelo.setColumnIdentifiers(colunas);
          List<objPaciente> lista = pacienteDAO.getPacientes();
-        
+         
+         
+         //Date data = new Date();
+         //SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/YYYY");
+         //String dataFormatada = formatar.format(data);
+         
+         
         for(objPaciente pac : lista){
             Object[] obj = { pac.getCodigo(), pac.getNome(), pac.getEmail(), pac.getTelefone(),
             pac.getNascimento(), pac.getEndereco(), pac.getBairro(), pac.getCidade(), pac.getCep(),
             pac.getEstadoCivil(), pac.getCpf(), pac.getRg(), pac.getConvenio(), pac.getMedico().getNome()};
             modelo.addRow(obj);    
         }
+        
+         
         
         tablePacientes.setModel(modelo);
         

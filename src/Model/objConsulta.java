@@ -53,6 +53,10 @@ public class objConsulta {
     public void setHora(Time hora) {
         this.hora = hora;
     }
+
+    public void setHora(String hora) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     
     

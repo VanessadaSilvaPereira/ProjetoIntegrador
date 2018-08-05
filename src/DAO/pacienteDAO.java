@@ -60,7 +60,7 @@ public static void editar( objPaciente pac){
 public static void excluir( objPaciente pac){
 
         String sql = "DELETE FROM pacientes "
-               + " WHERE CPF = " + pac.getCpf();
+               + " WHERE codigo = " + pac.getCodigo();
         
         Conexao.executar(sql);
     }

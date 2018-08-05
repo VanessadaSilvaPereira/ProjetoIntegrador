@@ -10,13 +10,18 @@ import javax.swing.JOptionPane;
 
 public class ConsultaDAO {
     public static void inserir( objConsulta c){
+        
+        int segundo = (int) c.getHora().getTime();
+        int minuto = (int) c.getHora().getTime();
+        int horas = (int) c.getHora().getTime();
+        String hora = ""+ horas + "-"+ minuto + "-"+ segundo;
 
         String sql = "INSERT INTO consultas "
                 + " ( cpfpaciente , medico, dataconsulta, hora) VALUES "
                 + " ( '" + c.getCpfpaciente() + "' ,"
                 + "  " + c.getMedico()       + " , " 
                 + "  " + c.getDataconsulta() + " , " 
-                + "  " + c.getHora()         + " );";  
+                + "  " + hora         + " );";  
         Conexao.executar(sql);   
     }
     

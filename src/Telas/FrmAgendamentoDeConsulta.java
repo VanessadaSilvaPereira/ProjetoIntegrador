@@ -8,6 +8,7 @@ package Telas;
 import DAO.medicoDAO;
 import Model.objConsulta;
 import Model.objMedico;
+import java.sql.Time;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -99,29 +100,29 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
-                            .addGap(74, 74, 74)
-                            .addComponent(btnSalvar)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCancelar))
+                            .addComponent(jLabel4)
+                            .addGap(18, 18, 18)
+                            .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtData, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(18, 18, 18)
-                            .addComponent(cmbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cmbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(btnSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)))
                 .addGap(0, 52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -143,7 +144,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSalvar)
                     .addComponent(btnCancelar))
@@ -154,18 +155,14 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
-   
-      
-      
-    
 
-    
+
     }//GEN-LAST:event_cmbMedicoActionPerformed
-  
-    private void carregarMedicos(){
-    
-    List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
-         objMedico fake = new objMedico(0, "Selecione...", "");
+
+    private void carregarMedicos() {
+
+        List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
+        objMedico fake = new objMedico(0, "Selecione...", "");
         listaDeMedicos.add(0, fake);
 
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -177,47 +174,57 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         FrmAgendamentoDeConsulta.this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
-private void limparCadastro(){
-     txtPaciente.setText("");
-     txtData.setText("");
-     cmbMedico.setSelectedIndex(0);
-     cmbHora.setSelectedIndex(0);
-     
-     
-}
-        
+    private void limparCadastro() {
+        txtPaciente.setText("");
+        txtData.setText("");
+        cmbMedico.setSelectedIndex(0);
+        cmbHora.setSelectedIndex(0);
+
+    }
+
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        
-   
+
         try {
-        String paciente = txtPaciente.getText();
-        //String Dataconsulta = txtData.getText(); 
-         if (!paciente.isEmpty()) {
+            String paciente = txtPaciente.getText();
 
-            objConsulta consulta = new objConsulta();
-            
-            consulta.setCpfpaciente(txtPaciente.getText());
-            String data = txtData.getText();
-            String sdia = data.substring(0, 2);
-            String smes = data.substring(3, 5);
-            String sano = data.substring(6, 10);
-            int dia = Integer.valueOf(sdia);
-            int mes = Integer.valueOf(smes);
-            int ano = Integer.valueOf(sano);
-            Date dataconsulta = new Date(ano, (mes - 1), dia);
-            consulta.setDataconsulta(dataconsulta);
-            
-           limparCadastro();
-        }
+            if (!paciente.isEmpty()) {
+
+                objConsulta consulta = new objConsulta();
+
+                consulta.setCpfpaciente(txtPaciente.getText());
+
+                String data = txtData.getText();
+                String sdia = data.substring(0, 2);
+                String smes = data.substring(3, 5);
+                String sano = data.substring(6, 10);
+                int dia = Integer.valueOf(sdia);
+                int mes = Integer.valueOf(smes);
+                int ano = Integer.valueOf(sano);
+                Date dataconsulta = new Date(ano, (mes - 1), dia);
+                consulta.setDataconsulta(dataconsulta);
+
+                //String segundo = Time.substring(0, 2);
+                //String minuto = Time.substring(3, 5);
+                //String hora = Time.substring(6, 8);
+                
+                //int horas = Integer.valueOf(hora);
+               // int minutos = Integer.valueOf(minuto);
+               // int segundos = Integer.valueOf(segundo);
+                
+              //  Time hora = new Time (horas, minutos, segundos);
+               // consulta.setHora(hora);
+
+                consulta.setMedico((objMedico) cmbMedico.getSelectedItem());
+
+                limparCadastro();
+            }
         } catch (Exception ex) {
-           
-            Logger.getLogger(FrmAgendamentoDeConsulta.class.getName()).log(Level.SEVERE, null,ex);
-            
+
+            Logger.getLogger(FrmAgendamentoDeConsulta.class.getName()).log(Level.SEVERE, null, ex);
+
         }
 
-      
 
-       
     }//GEN-LAST:event_btnSalvarActionPerformed
 
 

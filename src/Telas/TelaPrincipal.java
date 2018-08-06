@@ -5,6 +5,9 @@
  */
 package Telas;
 
+import java.awt.Frame;
+import javax.swing.JFrame;
+
 /**
  *
  * @author pc
@@ -16,8 +19,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
+        setResizable(false);
     }
-
+  
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,8 +48,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
+
+        jdpTelaInicial.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jdpTelaInicial.setMaximumSize(new java.awt.Dimension(1200, 900));
+        jdpTelaInicial.setMinimumSize(new java.awt.Dimension(1200, 900));
         getContentPane().add(jdpTelaInicial);
-        jdpTelaInicial.setBounds(0, 0, 1200, 900);
+        jdpTelaInicial.setBounds(0, -20, 1510, 970);
 
         menuCadastros.setText("Cadastros");
 
@@ -101,13 +109,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(946, 581));
+        setSize(new java.awt.Dimension(1525, 1014));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuCadastrosMedicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCadastrosMedicosActionPerformed
        FrmCadastroMedico frm = new FrmCadastroMedico();
        jdpTelaInicial.add(frm);
+       
        frm.setVisible(true);
     }//GEN-LAST:event_menuCadastrosMedicosActionPerformed
 

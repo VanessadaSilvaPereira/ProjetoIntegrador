@@ -72,7 +72,7 @@ public class ConsultaDAO {
 
 
     public static Object getPacienteByCodigo(int codigo) {
-        Object cliente = null;
+        Object paciente = null;
         
         String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
                 + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
@@ -84,10 +84,10 @@ public class ConsultaDAO {
         
         try {
             rs.first();
-            objPaciente paciente = new objPaciente();
+            objPaciente pac = new objPaciente();
             paciente.setCodigo(rs.getInt(2));
             paciente.setNome(rs.getString(4));
-            
+              
             String tipo = rs.getString(7);            
             if ( tipo.equals("") ) {
                 objPaciente pac = new objPaciente();
@@ -114,4 +114,4 @@ public class ConsultaDAO {
 
 }
         }
-        }
+    }        

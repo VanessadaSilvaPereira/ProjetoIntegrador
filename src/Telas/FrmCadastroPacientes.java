@@ -13,13 +13,28 @@ import javax.swing.DefaultComboBoxModel;
 
 
 public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
+private boolean novo;
+private Object paciente;
+private List<objPaciente> listaDeClientes;
+private ListPacientes telaListPacientes;
 
     
     public FrmCadastroPacientes() {
         initComponents();
         carregarMedicos();
+        paciente = new objPaciente();
+        novo = true;
+        lblCodigo.setText("");
     }
-
+ public FrmCadastroPacientes(int codigo, ListPacientes telaListClientes) {
+        initComponents();
+        carregarMedicos();
+        novo = false;
+        paciente = pacienteDAO.getPacienteByCodigo(codigo);
+        
+        
+        this.telaListPacientes = telaListPacientes;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

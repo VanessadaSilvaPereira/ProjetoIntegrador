@@ -7,15 +7,17 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class ListPacientes extends javax.swing.JInternalFrame {
 
-    
-    public ListPacientes() {
+    private JDesktopPane painelTelaInicial;
+    public ListPacientes(JDesktopPane painelTelaInicial) {
         initComponents();
+        this.painelTelaInicial = painelTelaInicial;
         carregarTabela();
         
     }
@@ -60,6 +62,7 @@ public class ListPacientes extends javax.swing.JInternalFrame {
         tablePacientes = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
+        btnEditar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -94,6 +97,13 @@ public class ListPacientes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,6 +116,8 @@ public class ListPacientes extends javax.swing.JInternalFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnExcluir)
+                        .addGap(49, 49, 49)
+                        .addComponent(btnEditar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnCancelar)
                         .addGap(44, 44, 44))))
@@ -118,7 +130,8 @@ public class ListPacientes extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancelar)
-                    .addComponent(btnExcluir))
+                    .addComponent(btnExcluir)
+                    .addComponent(btnEditar))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -145,9 +158,23 @@ public class ListPacientes extends javax.swing.JInternalFrame {
     
     }//GEN-LAST:event_btnExcluirActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int linha = tablePacientes.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(this, "Você deve selecionar um paciente!");
+        }else{
+            int codigo = (int) tablePacientes.getValueAt(linha, 0);
+            FrmCadastroPacientes formulario = new FrmCadastroPacientes(codigo, this);
+            this.painelTelaInicial.add(formulario);
+            formulario.setVisible(true);
+            
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablePacientes;

@@ -27,8 +27,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jdpTelaInicial = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
+        jdpTelaInicial = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         menuCadastros = new javax.swing.JMenu();
         menuCadastrosMedicos = new javax.swing.JMenuItem();
@@ -39,14 +39,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuAgendamentoConsultas = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(null);
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Neon-Blue-Abstract-4K-Wallpaper.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
-        jdpTelaInicial.add(jLabel1);
-        jLabel1.setBounds(0, 0, 940, 900);
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
         getContentPane().add(jdpTelaInicial);
         jdpTelaInicial.setBounds(0, 0, 1200, 900);
 
@@ -121,7 +118,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCadastrosPacientesActionPerformed
 
     private void menuListasPacientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuListasPacientesActionPerformed
-     ListPacientes list = new ListPacientes();
+        ListPacientes list = new ListPacientes(jdpTelaInicial);
         jdpTelaInicial.add(list);
         list.setVisible(true);
     }//GEN-LAST:event_menuListasPacientesActionPerformed

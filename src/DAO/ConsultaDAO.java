@@ -38,7 +38,12 @@ public class ConsultaDAO {
         List<objConsulta> lista = new ArrayList<>();
 
         String sql = "SELECT * FROM consultas";
-        //inner join
+        // String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
+               // + " c.endereco, c.tipo, c.cpf_cnpj, c.rg_ie "
+              //  + " FROM clientes c "
+               // + " INNER JOIN cidades d ON c.codCidade = d.codigo "
+               // + " WHERE c.tipo = '' "
+               // + " ORDER BY c.nome";
 
         ResultSet rs = Conexao.consultar(sql);
 

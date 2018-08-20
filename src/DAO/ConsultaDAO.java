@@ -82,7 +82,7 @@ public class ConsultaDAO {
                 + " ORDER BY c.nome ";        
         ResultSet rs = Conexao.consultar(sql);
         
-        try {
+        try{
             rs.first();
             objPaciente pac = new objPaciente();
             paciente.setCodigo(rs.getInt(2));
@@ -90,7 +90,7 @@ public class ConsultaDAO {
               
             String tipo = rs.getString(7);            
             if ( tipo.equals("") ) {
-                objPaciente pac = new objPaciente();
+                objPaciente paci = new objPaciente();
                 
                 pac.setCodigo(rs.getInt(1));
                 pac.setNome(rs.getString(3));
@@ -114,4 +114,5 @@ public class ConsultaDAO {
 
 }
         }
-    }        
+    }
+}

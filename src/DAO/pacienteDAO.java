@@ -67,15 +67,12 @@ public class pacienteDAO {
     public static List<objPaciente> getPacientes() {
 
         List<objPaciente> lista = new ArrayList<>();
-
-        String sql = "SELECT * FROM pacientes ORDER BY nome";
         
- //String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
-               // + " c.endereco, c.tipo, c.cpf_cnpj, c.rg_ie "
-               // + " FROM clientes c "
-                //+ " INNER JOIN cidades d ON c.codCidade = d.codigo "
-               // + " WHERE c.tipo = '' "
-               // + " ORDER BY c.nome";
+        String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome, " 
+               + " c.email, c.telefone, c.nascimento,c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+               + " FROM pacientes c "
+               + " INNER JOIN medicos d ON c.codMedico = d.codigo "
+               + " ORDER BY c.nome";
         ResultSet rs = Conexao.consultar(sql);
 
         if (rs != null) {
@@ -83,6 +80,9 @@ public class pacienteDAO {
                 while (rs.next()) {
 
                     objMedico med = new objMedico();
+                    med.setNome(rs.getString(4));
+                    med.setCodigo(rs.getInt(2));
+                    
 
                     objPaciente pac = new objPaciente();
 
@@ -93,19 +93,19 @@ public class pacienteDAO {
                     
 
                     pac.setCodigo(rs.getInt(1));
-                    pac.setNome(rs.getString(2));
-                    pac.setEmail(rs.getString(3));
-                    pac.setTelefone(rs.getString(4));
-                    pac.setCpf(rs.getString(11));
-                    pac.setNascimento(rs.getDate(5));
-                    pac.setRg(rs.getString(12));
-                    pac.setEstadoCivil(rs.getString(10));
-                    pac.setCidade(rs.getString(8));
-                    pac.setEndereco(rs.getString(6));
-                    pac.setBairro(rs.getString(7));
+                    pac.setNome(rs.getString(3));
+                    pac.setEmail(rs.getString(5));
+                    pac.setTelefone(rs.getString(6));
+                    pac.setCpf(rs.getString(13));
+                    pac.setNascimento(rs.getDate(7));
+                    pac.setRg(rs.getString(14));
+                    pac.setEstadoCivil(rs.getString(12));
+                    pac.setCidade(rs.getString(10));
+                    pac.setEndereco(rs.getString(8));
+                    pac.setBairro(rs.getString(9));
                     pac.setMedico(med);
-                    pac.setCep(rs.getString(9));
-                    pac.setConvenio(rs.getString(13));
+                    pac.setCep(rs.getString(11));
+                    pac.setConvenio(rs.getString(15));
                     lista.add(pac);
 
                 }
@@ -120,12 +120,12 @@ public class pacienteDAO {
     public static Object getPacienteByCodigo(int codigo) {
         Object paciente = null;
         
-        String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
+       String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
                 + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
-                + " FROM pacientes c "
-                + " INNER JOIN medicos d ON c.codMedico = d.codigo "
-                + " WHERE c.codigo = " + codigo
-                + " ORDER BY c.nome ";        
+               + " FROM pacientes c "
+               + " INNER JOIN medicos d ON c.codMedico = d.codigo "
+              + " WHERE c.codigo = " + codigo
+               + " ORDER BY c.nome ";        
         ResultSet rs = Conexao.consultar(sql);
         
         try {

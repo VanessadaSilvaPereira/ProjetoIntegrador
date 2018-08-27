@@ -219,17 +219,8 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 int ano = Integer.valueOf(sano);
                 Date dataconsulta = new Date(ano, (mes - 1), dia);
                 consulta.setDataconsulta(dataconsulta);
-
-                //String segundo = Time.substring(0, 2);
-                //String minuto = Time.substring(3, 5);
-                //String hora = Time.substring(6, 8);
                 
-                //int horas = Integer.valueOf(hora);
-               // int minutos = Integer.valueOf(minuto);
-               // int segundos = Integer.valueOf(segundo);
-                
-              //  Time hora = new Time (horas, minutos, segundos);
-               // consulta.setHora(hora);
+                cmbHora.getSelectedItem();
 
                 consulta.setMedico((objMedico) cmbMedico.getSelectedItem());
 

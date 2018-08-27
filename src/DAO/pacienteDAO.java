@@ -124,7 +124,7 @@ public class pacienteDAO {
                 + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
                + " FROM pacientes c "
                + " INNER JOIN medicos d ON c.codMedico = d.codigo "
-              + " WHERE c.codigo = " + codigo
+               + " WHERE c.codigo = " + codigo
                + " ORDER BY c.nome ";        
         ResultSet rs = Conexao.consultar(sql);
         

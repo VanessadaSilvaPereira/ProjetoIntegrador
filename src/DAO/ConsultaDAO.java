@@ -38,13 +38,12 @@ public class ConsultaDAO {
 
         List<objConsulta> lista = new ArrayList<>();
 
-        String sql = "SELECT * FROM consultas";
-        // String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
-               // + " c.endereco, c.tipo, c.cpf_cnpj, c.rg_ie "
-              //  + " FROM clientes c "
-               // + " INNER JOIN cidades d ON c.codCidade = d.codigo "
-               // + " WHERE c.tipo = '' "
-               // + " ORDER BY c.nome";
+        //String sql = "SELECT * FROM consultas";
+         String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
+                + " c.endereco, c.tipo, c.cpf_cnpj, c.rg_ie "
+                + " FROM consultas c "
+                + " INNER JOIN consultas d ON c.codMedico = d.codigo "
+                + " ORDER BY c.nome";
 
         ResultSet rs = Conexao.consultar(sql);
 
@@ -71,48 +70,55 @@ public class ConsultaDAO {
     }
 
 
-   // public static Object getConsultaByCodigo(int codigo) {
-        //Object paciente = null;
+    public static Object getPacienteByCpf(int cpf) {
+       Object paciente = null;
         
-      //  String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
-            //    + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
-            //    + " FROM pacientes c "
-             //   + " INNER JOIN medicos d ON c.codMedico = d.codigo "
-             //   + " WHERE c.codigo = " + codigo
-            //    + " ORDER BY c.nome ";        
-      //  ResultSet rs = Conexao.consultar(sql);
+        String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
+               + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+                + " FROM pacientes c "
+                + " INNER JOIN medicos d ON c.codMedico = d.codigo "
+                + " WHERE c.cpf = '" + cpf + "' "
+                + " ORDER BY c.nome ";        
+       ResultSet rs = Conexao.consultar(sql);
         
-       // try{
-          //  rs.first();
-          //  ConsultaDAO consulta = new ConsultaDAO();
-          //  consulta.setCodigo(rs.getInt(2));
-           // consulta.setNome(rs.getString(4));
+       try {
+           rs.first();
+           objPaciente pac = new objPaciente();
+           pac.setCodigo(rs.getInt(2));
+           pac.setNome(rs.getString(4));
               
                    
-           // if ( rs != null) {
-          //      
-           //     objPaciente pac = new objPaciente();
-             //   pac.setCodigo(rs.getInt(1));
-              //  pac.setNome(rs.getString(3));
-             //   pac.setEmail(rs.getString(5));
-              //  pac.setTelefone(rs.getString(6));
-             //   pac.setNascimento(rs.getDate(7));
-              //  pac.setEndereco(rs.getString(8));
-              //  pac.setBairro(rs.getString(9));
-             //   pac.setCidade(rs.getString(10));
-             //   pac.setCep(rs.getString(11));
-             //   pac.setEstadoCivil(rs.getString(12));
-              //  pac.setCpf(rs.getString(13));
-              //  pac.setRg(rs.getString(14));
-            //    pac.setConvenio(rs.getString(15));
-           //     pac.setMedico(rs.getString(16));
+            if ( rs != null) {
+              
+               objPaciente paci = new objPaciente();
+                paci.setCodigo(rs.getInt(1));
+                paci.setNome(rs.getString(3));
+                paci.setEmail(rs.getString(5));
+                paci.setTelefone(rs.getString(6));
+                paci.setNascimento(rs.getDate(7));
+                paci.setEndereco(rs.getString(8));
+                paci.setBairro(rs.getString(9));
+                paci.setCidade(rs.getString(10));
+                paci.setCep(rs.getString(11));
+                paci.setEstadoCivil(rs.getString(12));
+                paci.setCpf(rs.getString(13));
+                paci.setRg(rs.getString(14));
+                paci.setConvenio(rs.getString(15));
+                paci.setMedico(rs.getString(16));
                 
                 
                 
-               // paciente = pac;
-            
+               paciente = pac;
+            }
+       }
 
+            catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
 }
-       // }
-  //  }
-//}
+        return paciente;
+        }
+        
+    }
+
+
+

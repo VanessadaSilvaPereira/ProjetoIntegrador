@@ -39,11 +39,10 @@ public class ConsultaDAO {
         List<objConsulta> lista = new ArrayList<>();
 
         //String sql = "SELECT * FROM consultas";
-         String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
-                + " c.endereco, c.tipo, c.cpf_cnpj, c.rg_ie "
+         String sql = "SELECT c.codigo, m.codigo, c.cpfpaciente, m.nome , "
+                + " c.dataconsulta, c.hora"
                 + " FROM consultas c "
-                + " INNER JOIN consultas d ON c.codMedico = d.codigo "
-                + " ORDER BY c.nome";
+                + " INNER JOIN medicos m ON c.codMedico = m.codigo ";
 
         ResultSet rs = Conexao.consultar(sql);
 
@@ -77,8 +76,8 @@ public class ConsultaDAO {
                + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
                 + " FROM pacientes c "
                 + " INNER JOIN medicos d ON c.codMedico = d.codigo "
-                + " WHERE c.cpf = '" + cpf + "' "
-                + " ORDER BY c.nome ";        
+                + " WHERE c.cpf = '" + cpf + "' ";      
+        
        ResultSet rs = Conexao.consultar(sql);
         
        try {

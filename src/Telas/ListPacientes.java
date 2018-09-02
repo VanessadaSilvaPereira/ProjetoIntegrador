@@ -3,9 +3,6 @@ package Telas;
 
 import DAO.pacienteDAO;
 import Model.objPaciente;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -13,8 +10,11 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class ListPacientes extends javax.swing.JInternalFrame {
-
+    
     private JDesktopPane painelTelaInicial;
+    
+    
+    
     public ListPacientes(JDesktopPane painelTelaInicial) {
         initComponents();
         this.painelTelaInicial = painelTelaInicial;
@@ -22,20 +22,14 @@ public class ListPacientes extends javax.swing.JInternalFrame {
         
     }
     
-     private void carregarTabela(){
+     public void carregarTabela(){
          DefaultTableModel modelo = new DefaultTableModel();
         String[] colunas = { "Código" , "Nome" , "E-mail", "Telefone", "Nascimento",
         "Endereço", "Bairro", "Cidade", "CEP", "Estado Civil" ,"CPF","RG","Convênio", "Médico"};
         
         modelo.setColumnIdentifiers(colunas);
          List<objPaciente> lista = pacienteDAO.getPacientes();
-         
-         
-         //Date data = new Date();
-         //SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/YYYY");
-         //String dataFormatada = formatar.format(data);
-         
-         
+      
         for(objPaciente pac : lista){
             Object[] obj = { pac.getCodigo(), pac.getNome(), pac.getEmail(), pac.getTelefone(),
             pac.getNascimento(), pac.getEndereco(), pac.getBairro(), pac.getCidade(), pac.getCep(),
@@ -159,7 +153,9 @@ public class ListPacientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnExcluirActionPerformed
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        int linha = tablePacientes.getSelectedRow();
+
+
+int linha = tablePacientes.getSelectedRow();
         if(linha == -1){
             JOptionPane.showMessageDialog(this, "Você deve selecionar um paciente!");
         }else{
@@ -169,6 +165,8 @@ public class ListPacientes extends javax.swing.JInternalFrame {
             formulario.setVisible(true);
             
         }
+        
+        
     }//GEN-LAST:event_btnEditarActionPerformed
 
 

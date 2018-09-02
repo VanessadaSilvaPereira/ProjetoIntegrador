@@ -1,7 +1,6 @@
 
 package Model;
 
-import java.sql.Time;
 import java.util.Date;
 
 
@@ -12,8 +11,24 @@ public class objConsulta {
     String cpfpaciente;
     objMedico medico;
     Date dataconsulta;
-    Time hora;
+    String hora;
 
+    public objConsulta() {
+    }
+    
+    
+    
+
+    public objConsulta(int codigo, String cpfpaciente, objMedico medico, Date dataconsulta, String hora) {
+        this.codigo = codigo;
+        this.cpfpaciente = cpfpaciente;
+        this.medico = medico;
+        this.dataconsulta = dataconsulta;
+        this.hora = hora;
+    }
+    
+   
+       
     public int getCodigo() {
         return codigo;
     }
@@ -46,16 +61,17 @@ public class objConsulta {
         this.dataconsulta = dataconsulta;
     }
 
-    public Time getHora() {
+    public String getHora() {
         return hora;
     }
 
-    public void setHora(Time hora) {
+    public void setHora(String hora) {
         this.hora = hora;
     }
-
-    public void setHora(String hora) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+  @Override
+    public String toString() {
+        return cpfpaciente; //To change body of generated methods, choose Tools | Templates.
+    }
     }
     
     
@@ -63,4 +79,4 @@ public class objConsulta {
     
     
     
-}
+

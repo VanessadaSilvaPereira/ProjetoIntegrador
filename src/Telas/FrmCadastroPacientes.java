@@ -7,15 +7,13 @@ import Model.objMedico;
 import Model.objPaciente;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 
 
 public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
 private boolean novo;
 private Object paciente;
-private List<objPaciente> listaDeClientes;
+private List<objPaciente> listaDePacientes;
 private ListPacientes telaListPacientes;
 
     
@@ -26,13 +24,12 @@ private ListPacientes telaListPacientes;
         novo = true;
         lblCodigo.setText("");
     }
- public FrmCadastroPacientes(int codigo, ListPacientes telaListClientes) {
+ public FrmCadastroPacientes(int codigo, ListPacientes telaListPacientes) {
         initComponents();
         carregarMedicos();
         novo = false;
         paciente = pacienteDAO.getPacienteByCodigo(codigo);
-        
-        
+        carregarFormulario();
         this.telaListPacientes = telaListPacientes;
     }
     
@@ -369,7 +366,7 @@ private ListPacientes telaListPacientes;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 private void limparCadastro(){
-     txtNome.setText("");
+        txtNome.setText("");
         txtBairro.setText("");
         txtEmail.setText("");
         txtEndereco.setText("");
@@ -381,9 +378,42 @@ private void limparCadastro(){
         txtRG.setText("");
         txtTelefone.setText("");
         cmbEstadoCivil.setSelectedItem("Selecione...");
-        cmbMedico.setSelectedIndex(0);
-        
+        cmbMedico.setSelectedIndex(0);      
 }
+
+
+
+  private void carregarFormulario(){
+      
+        objMedico med = new objMedico();
+        
+        
+        objPaciente pac = (objPaciente) paciente;
+        txtNome.setText( pac.getNome() );
+        txtEmail.setText(pac.getEmail());
+        txtTelefone.setText(pac.getTelefone());
+        txtNascimento.setText(String.valueOf(pac.getNascimento()));
+        txtEndereco.setText(pac.getEndereco());
+        txtBairro.setText(pac.getBairro());
+        txtCidade.setText(pac.getCidade());
+        txtCEP.setText(pac.getCep());
+        cmbEstadoCivil.setSelectedIndex(WIDTH);
+        txtCPF.setText(pac.getCpf());
+        txtRG.setText(pac.getRg());
+        txtConvenio.setText(pac.getConvenio());
+        cmbMedico.setSelectedItem(med.getNome());
+       
+        lblCodigo.setText(String.valueOf(pac.getCodigo()));
+       
+       
+        //começa em 1 pq a posição 0 é o selecione
+        for (int i = 1; i < listaDePacientes.size(); i++) {
+            objPaciente paci = listaDePacientes.get(i);
+            if(paci.getCodigo() == paci.getMedico().getCodigo()){
+                cmbMedico.setSelectedIndex(i);
+            }
+        }
+  }
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
        limparCadastro();
         
@@ -414,44 +444,34 @@ private void limparCadastro(){
     }//GEN-LAST:event_txtConvenioActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        try {
-      
-         
+   
+            objPaciente pac = new objPaciente();
+            
             String nome = txtNome.getText();
             String email = txtEmail.getText();
             String telefone = txtTelefone.getText();
             String cpf = txtCPF.getText();
-           
             String rg = txtRG.getText();
-          
             String cidade = txtCidade.getText();
             String endereco = txtEndereco.getText();
             String bairro = txtBairro.getText();
-          
             String cep = txtCEP.getText();
             String convenio = txtConvenio.getText();
-            
-       
-            
-            
-            
-            if( ! nome.isEmpty()){
+            if(!nome.isEmpty()){
                 
-                objPaciente paciente = new objPaciente();
+                pac.setNome(nome);
+                pac.setEmail(email);
+                pac.setTelefone(telefone);
+                pac.setEndereco(endereco);
+                pac.setBairro(bairro);
+                pac.setCidade(cidade);
+                pac.setCep(cep);
+                pac.setCpf(cpf);
+                pac.setRg(rg);
                 
-                paciente.setNome(nome);
-                paciente.setEmail(email);
-                paciente.setTelefone(telefone);
-                paciente.setEndereco(endereco);
-                paciente.setBairro(bairro);
-                paciente.setCidade(cidade);
-                paciente.setCep(cep);
-                paciente.setCpf(cpf);
-                paciente.setRg(rg);
-                
-                paciente.setConvenio(convenio);
-                paciente.setEstadoCivil( cmbEstadoCivil.getSelectedItem().toString());
-                paciente.setMedico((objMedico) cmbMedico.getSelectedItem());
+                pac.setConvenio(convenio);
+                pac.setEstadoCivil( cmbEstadoCivil.getSelectedItem().toString());
+                pac.setMedico((objMedico) cmbMedico.getSelectedItem());
                 
                 String data = txtNascimento.getText();
                 String sdia = data.substring(0, 2);
@@ -461,16 +481,24 @@ private void limparCadastro(){
                 int mes = Integer.valueOf(smes);
                 int ano = Integer.valueOf(sano);
                 Date nasc = new Date(ano, (mes -1), dia);
-                paciente.setNascimento(nasc);
+                pac.setNascimento(nasc);
                 
+                if(novo){
+                    
+               pacienteDAO.inserir(pac);
+                limparCadastro();
+                 
+            }else{
+                     pac.setCodigo( Integer.valueOf(lblCodigo.getText()) );
+           pacienteDAO.editar(pac);
+           telaListPacientes.carregarTabela();
+                } 
+                limparCadastro();
                 
-               pacienteDAO.inserir(paciente);
-              limparCadastro();
-                
-            }     
-        } catch (Exception ex) {
-            Logger.getLogger(FrmCadastroPacientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                if(!novo){
+                this.dispose();
+                }
+        }             
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed

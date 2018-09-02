@@ -53,7 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jdpTelaInicial.setMaximumSize(new java.awt.Dimension(1200, 900));
         jdpTelaInicial.setMinimumSize(new java.awt.Dimension(1200, 900));
         getContentPane().add(jdpTelaInicial);
-        jdpTelaInicial.setBounds(0, -20, 1510, 970);
+        jdpTelaInicial.setBounds(0, 0, 1510, 970);
 
         menuCadastros.setText("Cadastros");
 
@@ -109,7 +109,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         setJMenuBar(jMenuBar1);
 
-        setSize(new java.awt.Dimension(1525, 1014));
+        setSize(new java.awt.Dimension(1525, 1007));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

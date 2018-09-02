@@ -156,11 +156,10 @@ public class objPaciente {
         this.convenio = convenio;
     }        
 
-    public void setMedico(String med) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+    public String toString() {
+        return nome; //To change body of generated methods, choose Tools | Templates.
+    }
     }
 
-    public void setNascimento(String data) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-}
+

@@ -285,7 +285,7 @@ private void limparCadastro(){
             txtNome.setText(nome);
             txtEspecialidade.setText(especialidade);
             
-            novo = false;
+            novo = true;
         }
         
        

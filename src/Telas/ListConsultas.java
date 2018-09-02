@@ -26,17 +26,16 @@ public class ListConsultas extends javax.swing.JInternalFrame {
     }
 private void carregarTabela(){
     
-        //ConsultaDAO dao = new ConsultaDAO
     
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] colunas = { "Código" , "CPF" , "Data", "Hora", "Medico"};
+        String[] colunas = { "Código" , "CPF" , "Medico","Data", "Hora"};
         
         modelo.setColumnIdentifiers(colunas);
          List<objConsulta> lista = ConsultaDAO.getConsultas();
         
         for(objConsulta con : lista){
-            Object[] obj = { con.getCodigo(), con.getCpfpaciente(),
-            con.getDataconsulta(), con.getHora(), con.getMedico().getNome() };
+            Object[] obj = {con.getCodigo(), con.getCpfpaciente(), con.getMedico().getNome(),
+            con.getDataconsulta(), con.getHora()};
             modelo.addRow(obj);
             
         }

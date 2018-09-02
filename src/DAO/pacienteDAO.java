@@ -3,9 +3,7 @@ package DAO;
 import Model.objMedico;
 import Model.objPaciente;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,10 +16,9 @@ public class pacienteDAO {
         String data = "" + ano + "-" + mes + "-" + dia;
 
         String sql = "INSERT INTO pacientes "
-                + " (codigo, nome , email, telefone, nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, codMedico, convenio ) VALUES "
-                + " ( " + pac.getCodigo() + ","
-                + " '" + pac.getNome() + "',"
-                + " '" + pac.getEmail() + "',"
+                + " (nome, email, telefone, nascimento, endereco, bairro, cidade, cep, estadoCivil, cpf, rg, convenio, codMedico) VALUES( "
+                + " '" + pac.getNome() + "' ,"
+                + " '" + pac.getEmail() + "' ,"
                 + " '" + pac.getTelefone() + "',"
                 + " '" + data + "',"
                 + " '" + pac.getEndereco() + "',"
@@ -31,26 +28,27 @@ public class pacienteDAO {
                 + " '" + pac.getEstadoCivil() + "',"
                 + " '" + pac.getCpf() + "',"
                 + " '" + pac.getRg() + "',"
-                + "  " + pac.getMedico().getCodigo() + ","
-                + " '" + pac.getConvenio() + "'  );";
+                + " '" + pac.getConvenio()+ "',"
+                + " '" + pac.getMedico().getCodigo()+ "'  );";
 
         Conexao.executar(sql);
     }
 
     public static void editar(objPaciente pac) {
-        String sql = "UPDATE pacientes SET "
-                + " nome = '" + pac.getNome() + "' "
-                + " email = '" + pac.getEmail() + "' "
-                + " telefone = '" + pac.getTelefone() + "' "
-                + " nascimento = " + pac.getNascimento() + " "
-                + " endereco = '" + pac.getEndereco() + "' "
-                + " bairro = '" + pac.getBairro() + "' "
-                + " cidade = '" + pac.getCidade() + "' "
-                + " cep = '" + pac.getCep() + "' "
-                + " estadoCivil = '" + pac.getEstadoCivil() + "' "
-                + " cpf = '" + pac.getCpf() + "' "
-                + " rg = '" + pac.getRg() + "' "
-                + " codMedico = '" + pac.getMedico() + " "
+        String sql = "UPDATE pacientes SET "  
+                + " nome = '" + pac.getNome()                   + "' "
+                + " email = '" + pac.getEmail()                 + "' "
+                + " telefone = '" + pac.getTelefone()           + "' "
+                + " nascimento = " + pac.getNascimento()        + " "
+                + " endereco = '" + pac.getEndereco()           + "' "
+                + " bairro = '" + pac.getBairro()               + "' "
+                + " cidade = '" + pac.getCidade()               + "' "
+                + " cep = '" + pac.getCep()                     + "' "
+                + " estadoCivil = '" + pac.getEstadoCivil()     + "' "
+                + " cpf = '" + pac.getCpf()                     + "' "
+                + " rg = '" + pac.getRg()                       + "' "
+                + " convenio= '" + pac.getConvenio()            + "' "
+                + " codMedico = " + pac.getMedico().getCodigo() + " "
                 + " WHERE codigo = " + pac.getCodigo();
 
         Conexao.executar(sql);
@@ -68,10 +66,10 @@ public class pacienteDAO {
 
         List<objPaciente> lista = new ArrayList<>();
         
-        String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome, " 
-               + " c.email, c.telefone, c.nascimento,c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+        String sql = "SELECT c.codigo, m.codigo, c.nome, m.nome, " 
+               + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
                + " FROM pacientes c "
-               + " INNER JOIN medicos d ON c.codMedico = d.codigo "
+               + " INNER JOIN medicos m ON c.codMedico = m.codigo "
                + " ORDER BY c.nome";
         ResultSet rs = Conexao.consultar(sql);
 
@@ -85,12 +83,6 @@ public class pacienteDAO {
                     
 
                     objPaciente pac = new objPaciente();
-
-                   // int dia = pac.getNascimento().getDate();
-                    //int mes = (pac.getNascimento().getMonth() + 1);
-                   // int ano = pac.getNascimento().getYear();
-                    //String data = "" + dia + "-" + mes + "-" + ano;
-                    
 
                     pac.setCodigo(rs.getInt(1));
                     pac.setNome(rs.getString(3));
@@ -136,6 +128,8 @@ public class pacienteDAO {
             
             String tipo = rs.getString(7);            
             if ( tipo.equals("") ) {
+                
+                objMedico med = new objMedico();
                 objPaciente paci = new objPaciente();
                 
                 paci.setCodigo(rs.getInt(1));
@@ -151,7 +145,7 @@ public class pacienteDAO {
                 paci.setCpf(rs.getString(13));
                 paci.setRg(rs.getString(14));
                 paci.setConvenio(rs.getString(15));
-                paci.setMedico(rs.getString(16));
+                paci.setMedico(med);
                 
                 
                 

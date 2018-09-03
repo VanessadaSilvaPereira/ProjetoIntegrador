@@ -386,6 +386,9 @@ private void limparCadastro(){
   private void carregarFormulario(){
       
         objMedico med = new objMedico();
+        med.setCodigo(WIDTH);
+        med.setEspecialidade(title);
+        
         
         
         objPaciente pac = (objPaciente) paciente;

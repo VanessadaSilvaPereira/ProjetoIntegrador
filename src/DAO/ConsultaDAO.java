@@ -47,7 +47,7 @@ public class ConsultaDAO {
          String sql = "SELECT c.codigo, m.codigo, c.cpfpaciente, m.nome , "
                + " c.dataconsulta, c.hora"
                + " FROM consultas c "
-               + " INNER JOIN medicos m ON c.medico = m.codigo ";
+               + " INNER JOIN medicos m ON c.codMedico = m.codigo ";
         ResultSet rs = Conexao.consultar(sql);
 
         if (rs != null) {

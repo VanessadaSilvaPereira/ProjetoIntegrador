@@ -5,6 +5,7 @@
  */
 package Telas;
 
+import DAO.ConsultaDAO;
 import DAO.medicoDAO;
 import DAO.pacienteDAO;
 import Model.objConsulta;
@@ -296,6 +297,8 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 consulta.setDataconsulta(dataconsulta);
                 consulta.setHora((String) cmbHora.getSelectedItem());
                 consulta.setMedico((objMedico) cmbMedico.getSelectedItem());
+                
+                ConsultaDAO.inserir(consulta);
 
                 limparCadastro();
             }

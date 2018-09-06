@@ -22,10 +22,10 @@ public class ConsultaDAO {
        // String hora = "" + horas + "-" + minuto + "-" + segundo;
 
         String sql = "INSERT INTO consultas "
-                + " ( cpfpaciente, medico, dataconsulta, hora) VALUES "
+                + " ( cpfpaciente, codMedico, dataconsulta, hora) VALUES "
                 + " ( '" + c.getCpfpaciente() + "' ,"
-                + "  " + c.getMedico().getNome() + " , "
-                + "  " + data + " , "
+                + "  " + c.getMedico().getCodigo() + " , "
+                + "  '" + data + "' , "
                 + "  '" + c.getHora() + "' );";
         Conexao.executar(sql);
     }
@@ -45,9 +45,10 @@ public class ConsultaDAO {
 
         List<objConsulta> lista = new ArrayList<>();
          String sql = "SELECT c.codigo, m.codigo, c.cpfpaciente, m.nome , "
-               + " c.dataconsulta, c.hora"
+               + " c.dataconsulta, c.hora, p.nome, p.codigo"
                + " FROM consultas c "
-               + " INNER JOIN medicos m ON c.codMedico = m.codigo ";
+               + " INNER JOIN medicos m ON c.codMedico = m.codigo "
+               + " INNER JOIN pacientes p ON c.cpfpaciente = p.cpf";
         ResultSet rs = Conexao.consultar(sql);
 
         if (rs != null) {
@@ -57,12 +58,17 @@ public class ConsultaDAO {
                     med.setCodigo(rs.getInt(2));
                     med.setNome(rs.getString(4));
                     
+                    objPaciente pac = new objPaciente();
+                    pac.setCodigo(rs.getInt(8));
+                    pac.setNome(rs.getString(7));
+                    
                     objConsulta con = new objConsulta();
                     con.setCodigo(rs.getInt(1));
                     con.setCpfpaciente(rs.getString(3));
                     con.setMedico(med);
                     con.setDataconsulta(rs.getDate(5));
                     con.setHora(rs.getString(6));
+                    con.setPaciente(pac);
                     
                     lista.add(con);
                 }

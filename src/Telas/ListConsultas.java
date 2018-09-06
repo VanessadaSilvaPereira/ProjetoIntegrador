@@ -28,13 +28,13 @@ private void carregarTabela(){
     
     
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] colunas = { "Código" , "CPF" , "Medico","Data", "Hora"};
+        String[] colunas = { "Código" , "Paciente" , "Medico","Data", "Hora"};
         
         modelo.setColumnIdentifiers(colunas);
          List<objConsulta> lista = ConsultaDAO.getConsultas();
         
         for(objConsulta con : lista){
-            Object[] obj = {con.getCodigo(), con.getCpfpaciente(), con.getMedico().getNome(),
+            Object[] obj = {con.getCodigo(), con.getPaciente().getNome(), con.getMedico().getNome(),
             con.getDataconsulta(), con.getHora()};
             modelo.addRow(obj);
             

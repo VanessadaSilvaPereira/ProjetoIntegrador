@@ -221,15 +221,14 @@ public class FrmCadastroMedico extends javax.swing.JInternalFrame {
       
       
       String nome = txtNome.getText();
-      String especialidade = txtEspecialidade.getName();
+      String especialidade = txtEspecialidade.getText();
 
 
 if( ! nome.isEmpty()){
 
-        objMedico medico = new objMedico(WIDTH, nome, especialidade);
-        medico.setCodigo(WIDTH);
-        medico.setNome(txtNome.getText());
-        medico.setEspecialidade(txtEspecialidade.getText());
+        objMedico medico = new objMedico();
+        medico.setNome(nome);
+        medico.setEspecialidade( especialidade);
         
         if(novo)
             medicoDAO.inserir(medico);

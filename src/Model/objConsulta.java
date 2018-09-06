@@ -12,6 +12,9 @@ public class objConsulta {
     objMedico medico;
     Date dataconsulta;
     String hora;
+    objPaciente paciente;
+    
+    
 
     public objConsulta() {
     }
@@ -26,6 +29,16 @@ public class objConsulta {
         this.dataconsulta = dataconsulta;
         this.hora = hora;
     }
+
+    public objPaciente getPaciente() {
+        return paciente;
+    }
+
+    public void setPaciente(objPaciente paciente) {
+        this.paciente = paciente;
+    }
+    
+    
     
    
        

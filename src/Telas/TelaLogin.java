@@ -74,10 +74,10 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().add(btnAcessar);
         btnAcessar.setBounds(40, 230, 100, 25);
 
-        labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Neon-Blue-Abstract-4K-Wallpaper.jpg"))); // NOI18N
+        labelFundoLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/7919-download-hd-sunset-dark-clouds-wallpaper.jpg"))); // NOI18N
         labelFundoLogin.setText("teste");
         getContentPane().add(labelFundoLogin);
-        labelFundoLogin.setBounds(-300, -10, 820, 310);
+        labelFundoLogin.setBounds(-570, -710, 1170, 1070);
 
         setSize(new java.awt.Dimension(528, 347));
         setLocationRelativeTo(null);

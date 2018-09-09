@@ -235,7 +235,7 @@ if( ! nome.isEmpty()){
         else{
             medico.setCodigo( Integer.valueOf(lblCodigo.getText()) );
             medicoDAO.editar(medico);
-            novo = true;
+            novo = false;
         }
         
         txtNome.setText("");
@@ -276,6 +276,7 @@ private void limparCadastro(){
              
            
             String codigo = String.valueOf( (int) tableMédicos.getValueAt(linha, 0) );
+            
             String nome = (String) tableMédicos.getValueAt(linha, 1);
             String especialidade = (String) tableMédicos.getValueAt(linha, 2);
             
@@ -284,6 +285,8 @@ private void limparCadastro(){
             txtNome.setText(nome);
             txtEspecialidade.setText(especialidade);
             
+            objMedico med = new objMedico();
+            medicoDAO.editar(med);
             novo = true;
         }
         

@@ -23,6 +23,7 @@ public class ConsultaDAO {
 
         String sql = "INSERT INTO consultas "
                 + " ( cpfpaciente, codMedico, dataconsulta, hora) VALUES "
+               // + " ( cpfpaciente,Medico, dataconsulta, hora) VALUES "
                 + " ( '" + c.getCpfpaciente() + "' ,"
                 + "  " + c.getMedico().getCodigo() + " , "
                 + "  '" + data + "' , "
@@ -47,7 +48,8 @@ public class ConsultaDAO {
          String sql = "SELECT c.codigo, m.codigo, c.cpfpaciente, m.nome , "
                + " c.dataconsulta, c.hora, p.nome, p.codigo"
                + " FROM consultas c "
-               + " INNER JOIN medicos m ON c.codMedico = m.codigo "
+              + " INNER JOIN medicos m ON c.codMedico = m.codigo "
+              // + " INNER JOIN medicos m ON c.Medico = m.codigo "
                + " INNER JOIN pacientes p ON c.cpfpaciente = p.cpf";
         ResultSet rs = Conexao.consultar(sql);
 

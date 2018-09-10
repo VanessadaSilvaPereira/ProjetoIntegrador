@@ -12,9 +12,10 @@ import javax.swing.DefaultComboBoxModel;
 
 public class FrmCadastroPacientes extends javax.swing.JInternalFrame {
 private boolean novo;
-private Object paciente;
+private objPaciente paciente;
 private List<objPaciente> listaDePacientes;
 private ListPacientes telaListPacientes;
+private List<objMedico> listaDeMedicos; 
 
     
     public FrmCadastroPacientes() {
@@ -384,35 +385,35 @@ private void limparCadastro(){
 
 
   private void carregarFormulario(){
+//      
+//        objMedico med = new objMedico();
+//        med.setCodigo(WIDTH);
+//        med.setEspecialidade(title);
+        
+        
+        
       
-        objMedico med = new objMedico();
-        med.setCodigo(WIDTH);
-        med.setEspecialidade(title);
-        
-        
-        
-        objPaciente pac = (objPaciente) paciente;
-        txtNome.setText( pac.getNome() );
-        txtEmail.setText(pac.getEmail());
-        txtTelefone.setText(pac.getTelefone());
-        txtNascimento.setText(String.valueOf(pac.getNascimento()));
-        txtEndereco.setText(pac.getEndereco());
-        txtBairro.setText(pac.getBairro());
-        txtCidade.setText(pac.getCidade());
-        txtCEP.setText(pac.getCep());
+        txtNome.setText( paciente.getNome() );
+        txtEmail.setText(paciente.getEmail());
+        txtTelefone.setText(paciente.getTelefone());
+        txtNascimento.setText(String.valueOf(paciente.getNascimento()));
+        txtEndereco.setText(paciente.getEndereco());
+        txtBairro.setText(paciente.getBairro());
+        txtCidade.setText(paciente.getCidade());
+        txtCEP.setText(paciente.getCep());
         cmbEstadoCivil.setSelectedIndex(WIDTH);
-        txtCPF.setText(pac.getCpf());
-        txtRG.setText(pac.getRg());
-        txtConvenio.setText(pac.getConvenio());
-        cmbMedico.setSelectedItem(med.getNome());
+        txtCPF.setText(paciente.getCpf());
+        txtRG.setText(paciente.getRg());
+        txtConvenio.setText(paciente.getConvenio());
+        cmbMedico.setSelectedItem( paciente.getMedico() );
        
-        lblCodigo.setText(String.valueOf(pac.getCodigo()));
+        lblCodigo.setText(String.valueOf(paciente.getCodigo()));
        
        
         //começa em 1 pq a posição 0 é o selecione
-        for (int i = 1; i < listaDePacientes.size(); i++) {
-            objPaciente paci = listaDePacientes.get(i);
-            if(paci.getCodigo() == paci.getMedico().getCodigo()){
+        for (int i = 1; i < listaDeMedicos.size(); i++) {
+            objMedico med = listaDeMedicos.get(i);
+            if(med.getCodigo() == paciente.getMedico().getCodigo()){
                 cmbMedico.setSelectedIndex(i);
             }
         }
@@ -425,7 +426,7 @@ private void limparCadastro(){
 
      public void carregarMedicos(){
         
-        List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
+        listaDeMedicos = medicoDAO.getMedicos();
          objMedico fake = new objMedico(0, "Selecione...", "");
         listaDeMedicos.add(0, fake);
         

@@ -28,26 +28,26 @@ public class pacienteDAO {
                 + " '" + pac.getEstadoCivil() + "',"
                 + " '" + pac.getCpf() + "',"
                 + " '" + pac.getRg() + "',"
-                + " '" + pac.getConvenio()+ "',"
-                + " '" + pac.getMedico().getCodigo()+ "'  );";
+                + " '" + pac.getConvenio() + "',"
+                + " '" + pac.getMedico().getCodigo() + "'  );";
 
         Conexao.executar(sql);
     }
 
     public static void editar(objPaciente pac) {
-        String sql = "UPDATE pacientes SET "  
-                + " nome = '" + pac.getNome()                   + "' "
-                + " email = '" + pac.getEmail()                 + "' "
-                + " telefone = '" + pac.getTelefone()           + "' "
-                + " nascimento = " + pac.getNascimento()        + " "
-                + " endereco = '" + pac.getEndereco()           + "' "
-                + " bairro = '" + pac.getBairro()               + "' "
-                + " cidade = '" + pac.getCidade()               + "' "
-                + " cep = '" + pac.getCep()                     + "' "
-                + " estadoCivil = '" + pac.getEstadoCivil()     + "' "
-                + " cpf = '" + pac.getCpf()                     + "' "
-                + " rg = '" + pac.getRg()                       + "' "
-                + " convenio= '" + pac.getConvenio()            + "' "
+        String sql = "UPDATE pacientes SET "
+                + " nome = '" + pac.getNome() + "' "
+                + " email = '" + pac.getEmail() + "' "
+                + " telefone = '" + pac.getTelefone() + "' "
+                + " nascimento = " + pac.getNascimento() + " "
+                + " endereco = '" + pac.getEndereco() + "' "
+                + " bairro = '" + pac.getBairro() + "' "
+                + " cidade = '" + pac.getCidade() + "' "
+                + " cep = '" + pac.getCep() + "' "
+                + " estadoCivil = '" + pac.getEstadoCivil() + "' "
+                + " cpf = '" + pac.getCpf() + "' "
+                + " rg = '" + pac.getRg() + "' "
+                + " convenio= '" + pac.getConvenio() + "' "
                 + " codMedico = " + pac.getMedico().getCodigo() + " "
                 + " WHERE codigo = " + pac.getCodigo();
 
@@ -65,12 +65,12 @@ public class pacienteDAO {
     public static List<objPaciente> getPacientes() {
 
         List<objPaciente> lista = new ArrayList<>();
-        
-        String sql = "SELECT c.codigo, m.codigo, c.nome, m.nome, " 
-               + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
-               + " FROM pacientes c "
-               + " INNER JOIN medicos m ON c.codMedico = m.codigo "
-               + " ORDER BY c.nome";
+
+        String sql = "SELECT c.codigo, m.codigo, c.nome, m.nome, "
+                + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+                + " FROM pacientes c "
+                + " INNER JOIN medicos m ON c.codMedico = m.codigo "
+                + " ORDER BY c.nome";
         ResultSet rs = Conexao.consultar(sql);
 
         if (rs != null) {
@@ -80,7 +80,6 @@ public class pacienteDAO {
                     objMedico med = new objMedico();
                     med.setNome(rs.getString(4));
                     med.setCodigo(rs.getInt(2));
-                    
 
                     objPaciente pac = new objPaciente();
 
@@ -109,56 +108,46 @@ public class pacienteDAO {
         return lista;
 
     }
-    public static Object getPacienteByCodigo(int codigo) {
-        Object paciente = null;
-        
-       String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
+
+    public static objPaciente getPacienteByCodigo(int codigo) {
+
+        String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
                 + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
-               + " FROM pacientes c "
-               + " INNER JOIN medicos d ON c.codMedico = d.codigo "
-               + " WHERE c.codigo = " + codigo
-               + " ORDER BY c.nome ";        
+                + " FROM pacientes c "
+                + " INNER JOIN medicos d ON c.codMedico = d.codigo "
+                + " WHERE c.codigo = " + codigo
+                + " ORDER BY c.nome ";
         ResultSet rs = Conexao.consultar(sql);
-        
+
         try {
             rs.first();
-            objPaciente pac = new objPaciente();
-            pac.setCodigo(rs.getInt(2));
-            pac.setNome(rs.getString(4));
-            
-            String tipo = rs.getString(7);            
-            if ( tipo.equals("") ) {
-                
-                objMedico med = new objMedico();
-                objPaciente paci = new objPaciente();
-                
-                paci.setCodigo(rs.getInt(1));
-                paci.setNome(rs.getString(3));
-                paci.setEmail(rs.getString(5));
-                paci.setTelefone(rs.getString(6));
-                paci.setNascimento(rs.getDate(7));
-                paci.setEndereco(rs.getString(8));
-                paci.setBairro(rs.getString(9));
-                paci.setCidade(rs.getString(10));
-                paci.setCep(rs.getString(11));
-                paci.setEstadoCivil(rs.getString(12));
-                paci.setCpf(rs.getString(13));
-                paci.setRg(rs.getString(14));
-                paci.setConvenio(rs.getString(15));
-                paci.setMedico(med);
-                
-                
-                
-                paciente = paci;
-            }
-        }
-            catch (Exception e) {
+            objPaciente paciente = new objPaciente();
+
+            objMedico med = new objMedico();
+            med.setCodigo(rs.getInt(2));
+            med.setNome(rs.getString(4));
+
+            paciente.setCodigo(rs.getInt(1));
+            paciente.setNome(rs.getString(3));
+            paciente.setEmail(rs.getString(5));
+            paciente.setTelefone(rs.getString(6));
+            paciente.setNascimento(rs.getDate(7));
+            paciente.setEndereco(rs.getString(8));
+            paciente.setBairro(rs.getString(9));
+            paciente.setCidade(rs.getString(10));
+            paciente.setCep(rs.getString(11));
+            paciente.setEstadoCivil(rs.getString(12));
+            paciente.setCpf(rs.getString(13));
+            paciente.setRg(rs.getString(14));
+            paciente.setConvenio(rs.getString(15));
+            paciente.setMedico(med);
+
+            return paciente;
+
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
+            return null;
         }
-        
-        return paciente;
-        
-    }
-    }
 
-
+    }
+}

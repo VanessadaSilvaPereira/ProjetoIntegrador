@@ -82,7 +82,60 @@ public class ConsultaDAO {
         return lista;
 
     }
+    
+     public static void editar(objConsulta con) {
+        String sql = "UPDATE consultas SET "
+                + " cpfpaciente = '" + con.getCpfpaciente()+ "' "
+                + " Medico = '" + con.getMedico().getNome()+ "' "
+                + " dataconsulta = '" + con.getDataconsulta()+ "' "
+                + " hora = '" + con.getHora()+ "' "
+               
+                + " WHERE codigo = " + con.getCodigo();
 
+        Conexao.executar(sql);
+    }
+
+     
+     
+      public static objConsulta getConsultaByCodigo(int codigo) {
+
+        String sql = "SELECT c.codigo, d.codigo,d.cpfpaciente, c.nome"
+                + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+                + " FROM consultas c "
+                + " INNER JOIN medicos d ON c.codMedico = d.codigo "
+                + " INNER JOIN pacientes p ON c.cpfpaciente = p.codigo "
+                + " WHERE c.codigo = " + codigo;
+        ResultSet rs = Conexao.consultar(sql);
+
+        try {
+            rs.first();
+            objConsulta consulta = new objConsulta();
+
+            objMedico med = new objMedico();
+            med.setCodigo(rs.getInt(2));
+            med.setNome(rs.getString(4));
+            
+            objPaciente pac = new objPaciente();
+            //cpf
+            //nome
+            //codigo
+
+            consulta.setCodigo(rs.getInt(1));
+            
+            
+            consulta.setCpfpaciente(rs.getString(3));
+            consulta.setDataconsulta(rs.getDate(5));
+            consulta.setHora(rs.getString(6));
+            consulta.setPaciente(pac);
+            consulta.setMedico(med);
+
+            return consulta;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+            return null;
+        }
+      }
 
     public static Object getPacienteByCpf(String cpf) {
        Object paciente = null;

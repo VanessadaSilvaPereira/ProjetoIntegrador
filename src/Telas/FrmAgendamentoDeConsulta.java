@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Telas;
 
 import DAO.ConsultaDAO;
@@ -19,19 +14,65 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author 181710106
- */
 public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
+    private boolean novo;
+    private objConsulta consulta;
+private List<objConsulta> listaDeConsultas;
+private ListConsultas telaListConsultas;
+private List<objMedico> listaDeMedicos; 
 
-    /**
-     * Creates new form AgendamentoDeConsulta
-     */
     public FrmAgendamentoDeConsulta() {
         initComponents();
         carregarMedicos();
         carregarTabela();
+        consulta= new objConsulta();
+        novo = true;
+        lblCodigo.setText("");
+    }
+     public FrmAgendamentoDeConsulta(int codigo, ListConsultas telaListConsultas) {
+        initComponents();
+        carregarMedicos();
+        carregarTabela();
+        novo = false;
+        consulta = ConsultaDAO.getConsultaByCodigo(codigo);
+        carregarFormulario();
+        this.telaListConsultas = telaListConsultas;
+    }
+    
+     private void carregarFormulario(){   
+       
+        txtData.setText(String.valueOf(consulta.getDataconsulta()));
+        cmbHora.setSelectedIndex(WIDTH);
+        cmbMedico.setSelectedItem( consulta.getMedico() );
+       
+        lblCodigo.setText(String.valueOf(consulta.getCodigo()));
+       
+       
+        //começa em 1 pq a posição 0 é o selecione
+        for (int i = 1; i < listaDeMedicos.size(); i++) {
+            objMedico med = listaDeMedicos.get(i);
+            if(med.getCodigo() == consulta.getMedico().getCodigo()){
+                cmbMedico.setSelectedIndex(i);
+            }
+        }
+  }
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {                                          
+       limparCadastro();
+        
+        
+    }                                         
+
+     public void carregarMedicos(){
+        
+        listaDeMedicos = medicoDAO.getMedicos();
+         objMedico fake = new objMedico(0, "Selecione...", "");
+        listaDeMedicos.add(0, fake);
+        
+         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+        for(objMedico med:listaDeMedicos){
+            modelo.addElement(med);
+        }
+        cmbMedico.setModel(modelo);
     }
 
     /**
@@ -58,6 +99,8 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePacientes = new javax.swing.JTable();
         btnLimpar = new javax.swing.JButton();
+        lblCodigo = new javax.swing.JLabel();
+        txtCodigo = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -137,6 +180,8 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
             }
         });
 
+        lblCodigo.setText("Código:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,7 +190,13 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnSalvar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                        .addComponent(btnCancelar)
+                        .addGap(127, 127, 127))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLimpar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -160,18 +211,14 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                                         .addComponent(cmbHora, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
-                                .addComponent(jLabel2)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblCodigo)
+                                    .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
-                                .addComponent(cmbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnLimpar)
-                                .addGap(154, 154, 154)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
-                        .addComponent(btnCancelar)
-                        .addGap(127, 127, 127))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cmbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -181,12 +228,16 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(cmbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -215,10 +266,10 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
 
     private void cmbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbMedicoActionPerformed
 
-
+    
     }//GEN-LAST:event_cmbMedicoActionPerformed
 
-    private void carregarTabela(){
+    public void carregarTabela(){
          DefaultTableModel modelo = new DefaultTableModel();
         String[] colunas = { "Código" , "Nome" , "CPF"};
         
@@ -233,22 +284,9 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
     }
     
     
-    
-    
-    private void carregarMedicos() {
-
-        List<objMedico> listaDeMedicos = medicoDAO.getMedicos();
-        objMedico fake = new objMedico(0, "Selecione...", "");
-        listaDeMedicos.add(0, fake);
-
-        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
-        for (objMedico med : listaDeMedicos) {
-            modelo.addElement(med);
-        }
-        cmbMedico.setModel(modelo);
-    }
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
         FrmAgendamentoDeConsulta.this.setVisible(false);
+    
     }//GEN-LAST:event_btnCancelarActionPerformed
     private void limparCadastro() {
         //txtPaciente.setText("");
@@ -256,7 +294,7 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
         cmbMedico.setSelectedIndex(0);
         cmbHora.setSelectedIndex(0);
         tablePacientes.setSelectionMode(0);
-        
+    
 
     }
 
@@ -290,22 +328,34 @@ public class FrmAgendamentoDeConsulta extends javax.swing.JInternalFrame {
                 consulta.setDataconsulta(dataconsulta);
                 consulta.setHora((String) cmbHora.getSelectedItem());
                 consulta.setMedico((objMedico) cmbMedico.getSelectedItem());
-                
+                if(novo){
+                    
                 ConsultaDAO.inserir(consulta);
+                limparCadastro();
+                }else{
+                     consulta.setCodigo( Integer.valueOf(lblCodigo.getText()) );
+                    ConsultaDAO.editar(consulta);
+           telaListConsultas.carregarTabela();
+                } 
+                limparCadastro();
+                
+                if(!novo){
+                this.dispose();
+                }
 
                 limparCadastro();
             }
         } catch (Exception ex) {
 
             Logger.getLogger(FrmAgendamentoDeConsulta.class.getName()).log(Level.SEVERE, null, ex);
-
         }
-
-
+    
+    
     }//GEN-LAST:event_btnSalvarActionPerformed
-
+    
     private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
 limparCadastro();
+    
     }//GEN-LAST:event_btnLimparActionPerformed
 
 
@@ -323,7 +373,10 @@ limparCadastro();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblCodigo;
     private javax.swing.JTable tablePacientes;
+    private javax.swing.JTextField txtCodigo;
     private javax.swing.JFormattedTextField txtData;
     // End of variables declaration//GEN-END:variables
 }
+

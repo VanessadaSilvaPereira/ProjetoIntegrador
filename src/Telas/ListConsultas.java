@@ -8,6 +8,7 @@ package Telas;
 import DAO.ConsultaDAO;
 import Model.objConsulta;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,14 +18,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListConsultas extends javax.swing.JInternalFrame {
 
+    private final JDesktopPane painelTelaInicial;
+
     /**
      * Creates new form ListConsultas
      */
-    public ListConsultas() {
+    public ListConsultas(JDesktopPane painelTelaInicial) {
         initComponents();
+        this.painelTelaInicial = painelTelaInicial;
         carregarTabela();
+        
     }
-private void carregarTabela(){
+    
+public void carregarTabela(){
     
     
         DefaultTableModel modelo = new DefaultTableModel();
@@ -149,6 +155,17 @@ private void carregarTabela(){
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
        
+int linha = tableConsultas.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(this, "Você deve selecionar um paciente!");
+        }else{
+            int codigo = (int) tableConsultas.getValueAt(linha, 0);
+            FrmAgendamentoDeConsulta agenda = new FrmAgendamentoDeConsulta(codigo, this);
+            this.painelTelaInicial.add(agenda);
+            agenda.setVisible(true);
+            
+        }
+        
         
     }//GEN-LAST:event_btnEditarActionPerformed
 

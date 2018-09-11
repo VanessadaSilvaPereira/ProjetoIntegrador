@@ -139,7 +139,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_menuAgendamentoConsultasActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-         ListConsultas list = new ListConsultas();
+         ListConsultas list = new ListConsultas(jdpTelaInicial);
         jdpTelaInicial.add(list);
         list.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed

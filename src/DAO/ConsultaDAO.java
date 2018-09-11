@@ -100,7 +100,7 @@ public class ConsultaDAO {
       public static objConsulta getConsultaByCodigo(int codigo) {
 
         String sql = "SELECT c.codigo, d.codigo,d.cpfpaciente, c.nome"
-                + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+                + " c.dataconsulta, c.hora"
                 + " FROM consultas c "
                 + " INNER JOIN medicos d ON c.codMedico = d.codigo "
                 + " INNER JOIN pacientes p ON c.cpfpaciente = p.codigo "
@@ -116,9 +116,8 @@ public class ConsultaDAO {
             med.setNome(rs.getString(4));
             
             objPaciente pac = new objPaciente();
-            //cpf
-            //nome
-            //codigo
+           // pac.setCodigo(codigo);
+            //pac.setCpf(sql);
 
             consulta.setCodigo(rs.getInt(1));
             
@@ -143,7 +142,7 @@ public class ConsultaDAO {
         String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
                + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
                 + " FROM pacientes c "
-                + " INNER JOIN medicos d ON c.medico = d.codigo "
+                + " INNER JOIN medicos d ON c.codMedico = d.codigo "
                 + " WHERE c.cpf = '" + cpf + "' ";      
         
        ResultSet rs = Conexao.consultar(sql);

@@ -45,7 +45,7 @@ private List<objMedico> listaDeMedicos;
         cmbHora.setSelectedIndex(WIDTH);
         cmbMedico.setSelectedItem( consulta.getMedico() );
        
-        lblCodigo.setText(String.valueOf(consulta.getCodigo()));
+        codigo.setText(String.valueOf(consulta.getCodigo()));
        
        
         //começa em 1 pq a posição 0 é o selecione
@@ -98,9 +98,9 @@ private List<objMedico> listaDeMedicos;
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablePacientes = new javax.swing.JTable();
-        btnLimpar = new javax.swing.JButton();
+        codigo = new javax.swing.JLabel();
+        btnLimpar2 = new javax.swing.JButton();
         lblCodigo = new javax.swing.JLabel();
-        txtCodigo = new javax.swing.JTextField();
 
         jButton1.setText("jButton1");
 
@@ -173,14 +173,14 @@ private List<objMedico> listaDeMedicos;
         ));
         jScrollPane2.setViewportView(tablePacientes);
 
-        btnLimpar.setText("Limpar");
-        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+        codigo.setText("Código:");
+
+        btnLimpar2.setText("Limpar");
+        btnLimpar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimparActionPerformed(evt);
+                btnLimpar2ActionPerformed(evt);
             }
         });
-
-        lblCodigo.setText("Código:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -191,12 +191,13 @@ private List<objMedico> listaDeMedicos;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 412, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnLimpar2)
+                        .addGap(87, 87, 87)
                         .addComponent(btnCancelar)
                         .addGap(127, 127, 127))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnLimpar)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -212,26 +213,26 @@ private List<objMedico> listaDeMedicos;
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblCodigo)
+                                    .addComponent(codigo)
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(lblCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 678, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 204, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 214, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(codigo)
                     .addComponent(lblCodigo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -252,12 +253,12 @@ private List<objMedico> listaDeMedicos;
                 .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnSalvar)
-                            .addComponent(btnLimpar))
+                        .addComponent(btnSalvar)
                         .addGap(49, 49, 49))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnCancelar)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnCancelar)
+                            .addComponent(btnLimpar2))
                         .addGap(41, 41, 41))))
         );
 
@@ -333,7 +334,7 @@ private List<objMedico> listaDeMedicos;
                 ConsultaDAO.inserir(consulta);
                 limparCadastro();
                 }else{
-                     consulta.setCodigo( Integer.valueOf(lblCodigo.getText()) );
+                     consulta.setCodigo( Integer.valueOf(codigo.getText()) );
                     ConsultaDAO.editar(consulta);
            telaListConsultas.carregarTabela();
                 } 
@@ -352,19 +353,19 @@ private List<objMedico> listaDeMedicos;
     
     
     }//GEN-LAST:event_btnSalvarActionPerformed
-    
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
-limparCadastro();
-    
-    }//GEN-LAST:event_btnLimparActionPerformed
+
+    private void btnLimpar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpar2ActionPerformed
+        limparCadastro();
+    }//GEN-LAST:event_btnLimpar2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnLimpar;
+    private javax.swing.JButton btnLimpar2;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cmbHora;
     private javax.swing.JComboBox<String> cmbMedico;
+    private javax.swing.JLabel codigo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -375,8 +376,6 @@ limparCadastro();
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JTable tablePacientes;
-    private javax.swing.JTextField txtCodigo;
     private javax.swing.JFormattedTextField txtData;
     // End of variables declaration//GEN-END:variables
 }
-

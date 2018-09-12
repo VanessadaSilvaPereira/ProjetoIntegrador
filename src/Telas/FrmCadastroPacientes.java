@@ -201,6 +201,11 @@ private List<objMedico> listaDeMedicos;
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        txtNascimento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNascimentoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -396,12 +401,34 @@ private void limparCadastro(){
         txtNome.setText( paciente.getNome() );
         txtEmail.setText(paciente.getEmail());
         txtTelefone.setText(paciente.getTelefone());
-        txtNascimento.setText(String.valueOf(paciente.getNascimento()));
+        String data = "";
+        if(paciente.getNascimento().getDate() < 10)
+            data += "0" + paciente.getNascimento().getDate();
+        else
+            data += paciente.getNascimento().getDate();
+        
+        data += "/";
+        
+        if(paciente.getNascimento().getMonth() < 9)
+            data += "0" + (paciente.getNascimento().getMonth() +1 );
+        else
+            data += (paciente.getNascimento().getMonth() +1 );
+        
+        data += "/";
+        if( paciente.getNascimento().getYear() <= 99 &&  paciente.getNascimento().getYear() > 20 )
+            data += "19" + (paciente.getNascimento().getYear());
+        else
+            data += "20" + (paciente.getNascimento().getYear());
+        
+        
+        
+                
+        txtNascimento.setText(data);
         txtEndereco.setText(paciente.getEndereco());
         txtBairro.setText(paciente.getBairro());
         txtCidade.setText(paciente.getCidade());
         txtCEP.setText(paciente.getCep());
-        cmbEstadoCivil.setSelectedIndex(WIDTH);
+        cmbEstadoCivil.setSelectedItem(paciente.getEstadoCivil());
         txtCPF.setText(paciente.getCpf());
         txtRG.setText(paciente.getRg());
         txtConvenio.setText(paciente.getConvenio());
@@ -513,6 +540,10 @@ private void limparCadastro(){
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
          FrmCadastroPacientes.this.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void txtNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNascimentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNascimentoActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -85,11 +85,10 @@ public class ConsultaDAO {
     
      public static void editar(objConsulta con) {
         String sql = "UPDATE consultas SET "
-                + " cpfpaciente = '" + con.getCpfpaciente()+ "' "
-                + " Medico = '" + con.getMedico().getNome()+ "' "
-                + " dataconsulta = '" + con.getDataconsulta()+ "' "
-                + " hora = '" + con.getHora()+ "' "
-               
+                + " cpfpaciente = '" + con.getCpfpaciente()   + "' "
+                + " codMedico = " + con.getMedico().getCodigo()  + " "
+                + " dataconsulta = '" + con.getDataconsulta() + "' "
+                + " hora = '" + con.getHora()                 + "' "
                 + " WHERE codigo = " + con.getCodigo();
 
         Conexao.executar(sql);
@@ -99,7 +98,7 @@ public class ConsultaDAO {
      
       public static objConsulta getConsultaByCodigo(int codigo) {
 
-        String sql = "SELECT c.codigo, d.codigo,d.cpfpaciente, c.nome"
+        String sql = "SELECT c.codigo, d.codigo,c.cpfpaciente, c.nome"
                 + " c.dataconsulta, c.hora"
                 + " FROM consultas c "
                 + " INNER JOIN medicos d ON c.codMedico = d.codigo "
@@ -116,12 +115,10 @@ public class ConsultaDAO {
             med.setNome(rs.getString(4));
             
             objPaciente pac = new objPaciente();
-           // pac.setCodigo(codigo);
-            //pac.setCpf(sql);
+           //pac.setCodigo(codigo);
+           //pac.setCpf(sql);
 
             consulta.setCodigo(rs.getInt(1));
-            
-            
             consulta.setCpfpaciente(rs.getString(3));
             consulta.setDataconsulta(rs.getDate(5));
             consulta.setHora(rs.getString(6));
@@ -140,7 +137,7 @@ public class ConsultaDAO {
        Object paciente = null;
         
         String sql = "SELECT c.codigo, d.codigo, c.nome, d.nome , "
-               + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
+                + " c.email, c.telefone, c.nascimento, c.endereco, c.bairro, c.cidade, c.cep, c.estadoCivil, c.cpf, c.rg, c.convenio "
                 + " FROM pacientes c "
                 + " INNER JOIN medicos d ON c.codMedico = d.codigo "
                 + " WHERE c.cpf = '" + cpf + "' ";      

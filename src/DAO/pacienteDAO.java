@@ -29,25 +29,31 @@ public class pacienteDAO {
                 + " '" + pac.getCpf() + "',"
                 + " '" + pac.getRg() + "',"
                 + " '" + pac.getConvenio() + "',"
-                + " '" + pac.getMedico().getCodigo() + "'  );";
-
+                + " " + pac.getMedico().getCodigo() + "  );";
+       
         Conexao.executar(sql);
     }
 
     public static void editar(objPaciente pac) {
+        int dia = pac.getNascimento().getDate();
+        int mes = (pac.getNascimento().getMonth() + 1);
+        int ano = pac.getNascimento().getYear();
+        String data = "" + ano + "-" + mes + "-" + dia;
+
+        
         String sql = "UPDATE pacientes SET "
-                + " nome = '" + pac.getNome() + "' "
-                + " email = '" + pac.getEmail() + "' "
-                + " telefone = '" + pac.getTelefone() + "' "
-                + " nascimento = " + pac.getNascimento() + " "
-                + " endereco = '" + pac.getEndereco() + "' "
-                + " bairro = '" + pac.getBairro() + "' "
-                + " cidade = '" + pac.getCidade() + "' "
-                + " cep = '" + pac.getCep() + "' "
-                + " estadoCivil = '" + pac.getEstadoCivil() + "' "
-                + " cpf = '" + pac.getCpf() + "' "
-                + " rg = '" + pac.getRg() + "' "
-                + " convenio= '" + pac.getConvenio() + "' "
+                + " nome = '" + pac.getNome()                   + "' , "
+                + " email = '" + pac.getEmail()                 + "' , "
+                + " telefone = '" + pac.getTelefone()           + "' , "
+                + " nascimento = '" + data                      + "' , "
+                + " endereco = '" + pac.getEndereco()           + "' , "
+                + " bairro = '" + pac.getBairro()               + "' , "
+                + " cidade = '" + pac.getCidade()               + "' , "
+                + " cep = '" + pac.getCep()                     + "' , "
+                + " estadoCivil = '" + pac.getEstadoCivil()     + "' , "
+                + " cpf = '" + pac.getCpf()                     + "' , "
+                + " rg = '" + pac.getRg()                       + "' , "
+                + " convenio= '" + pac.getConvenio()            + "' , "
                 + " codMedico = " + pac.getMedico().getCodigo() + " "
                 + " WHERE codigo = " + pac.getCodigo();
 

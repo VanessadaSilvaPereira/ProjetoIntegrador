@@ -34,7 +34,7 @@ public void carregarTabela(){
     
     
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] colunas = { "Código" , "Paciente" , "Medico","Data", "Hora"};
+        String[] colunas = { "Código" , "Paciente" , "Medico", "Data", "Hora"};
         
         modelo.setColumnIdentifiers(colunas);
          List<objConsulta> lista = ConsultaDAO.getConsultas();
@@ -61,7 +61,6 @@ public void carregarTabela(){
         tableConsultas = new javax.swing.JTable();
         btnCancelar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        btnEditar = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -96,13 +95,6 @@ public void carregarTabela(){
             }
         });
 
-        btnEditar.setText("Editar");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -112,22 +104,19 @@ public void carregarTabela(){
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCancelar)
-                    .addComponent(btnExcluir)
-                    .addComponent(btnEditar))
+                    .addComponent(btnExcluir))
                 .addGap(0, 19, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
+                .addGap(0, 27, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(btnCancelar)
-                .addGap(38, 38, 38)
+                .addGap(83, 83, 83)
                 .addComponent(btnExcluir)
-                .addGap(39, 39, 39)
-                .addComponent(btnEditar)
+                .addGap(28, 28, 28)
+                .addComponent(btnCancelar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -153,26 +142,9 @@ public void carregarTabela(){
     
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-       
-int linha = tableConsultas.getSelectedRow();
-        if(linha == -1){
-            JOptionPane.showMessageDialog(this, "Você deve selecionar um paciente!");
-        }else{
-            int codigo = (int) tableConsultas.getValueAt(linha, 0);
-            FrmAgendamentoDeConsulta agenda = new FrmAgendamentoDeConsulta(codigo, this);
-            this.painelTelaInicial.add(agenda);
-            agenda.setVisible(true);
-            
-        }
-        
-        
-    }//GEN-LAST:event_btnEditarActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableConsultas;

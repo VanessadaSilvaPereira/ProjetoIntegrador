@@ -42,7 +42,7 @@ private List<objMedico> listaDeMedicos;
      private void carregarFormulario(){   
        
         txtData.setText(String.valueOf(consulta.getDataconsulta()));
-        cmbHora.setSelectedIndex(WIDTH);
+        cmbHora.setSelectedItem(consulta.getHora());
         cmbMedico.setSelectedItem( consulta.getMedico() );
        
         codigo.setText(String.valueOf(consulta.getCodigo()));
@@ -56,11 +56,10 @@ private List<objMedico> listaDeMedicos;
             }
         }
   }
-    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {                                          
-       limparCadastro();
+    
         
         
-    }                                         
+                                             
 
      public void carregarMedicos(){
         
